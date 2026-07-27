@@ -1,12 +1,15 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { Image } from 'astro:assets';
+import ArticleCard from '../components/ArticleCard.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   decodeWordPressSlug,
   getAllPosts,
   getFeaturedImage,
   getPostCategories,
+  getPostsByCategory,
   type WordPressPost,
 } from '../lib/wordpress';
 import { stripHtml } from '../lib/text';
@@ -29,12 +32,10 @@ interface Props {
 }
 
 const { post } = Astro.props;
-
 const title = stripHtml(post.title.rendered);
 const description =
   stripHtml(post.excerpt.rendered).slice(0, 160) ||
   'JiJi Styleの記事です。';
-
 const featuredImage = getFeaturedImage(post);
 const categories = getPostCategories(post);
 
@@ -45,27 +46,56 @@ const formattedDate = new Intl.DateTimeFormat('ja-JP', {
 }).format(new Date(post.date));
 
 const decodedSlug = decodeWordPressSlug(post.slug);
-const canonical = `https://style.yh-inc.jp/${decodedSlug}/`;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '');
+const canonical = siteUrl ? `${siteUrl}/${decodedSlug}/` : undefined;
+const imageWidth = featuredImage?.media_details?.width ?? 1600;
+const imageHeight = featuredImage?.media_details?.height ?? 1200;
 
-const imageWidth =
-  featuredImage?.media_details?.width ?? 1600;
+let relatedPosts: WordPressPost[] = [];
 
-const imageHeight =
-  featuredImage?.media_details?.height ?? 1200;
+if (categories[0]) {
+  relatedPosts = (await getPostsByCategory(categories[0].id))
+    .filter((candidate) => candidate.id !== post.id)
+    .slice(0, 3);
+}
 ---
 
 <BaseLayout
   title={title}
   description={description}
   canonical={canonical}
+  image={featuredImage?.source_url}
+  type="article"
 >
   <article class="py-10 md:py-16 lg:py-20">
     <div class="mx-auto w-full max-w-[900px] px-5 md:px-8">
-      <header class="mb-10 md:mb-14">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          ...(categories[0]
+            ? [
+                {
+                  label: categories[0].name,
+                  href: `/category/${categories[0].slug}/`,
+                },
+              ]
+            : []),
+          { label: title },
+        ]}
+      />
+
+      <header class="mb-10 mt-8 md:mb-14 md:mt-10">
         {
           categories.length > 0 && (
             <p class="mb-4 text-xs tracking-[0.16em] text-jiji-muted uppercase">
-              {categories.map((category) => category.name).join(' / ')}
+              {categories.map((category) => (
+                <a
+                  class="transition-opacity hover:opacity-50"
+                  href={`/category/${category.slug}/`}
+                >
+                  {category.name}
+                </a>
+              ))}
             </p>
           )
         }
@@ -109,4 +139,21 @@ const imageHeight =
       />
     </div>
   </article>
+
+  {
+    relatedPosts.length > 0 && (
+      <section class="border-t border-jiji-border py-12 md:py-16">
+        <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
+          <p class="mb-2 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+            More to Read
+          </p>
+          <h2 class="font-serif text-3xl font-bold md:text-4xl">関連記事</h2>
+
+          <div class="mt-8 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 md:mt-10">
+            {relatedPosts.map((relatedPost) => <ArticleCard post={relatedPost} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
 </BaseLayout>
