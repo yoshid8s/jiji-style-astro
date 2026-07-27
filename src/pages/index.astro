@@ -1,17 +1,77 @@
 ---
+import ArticleCard from '../components/ArticleCard.astro';
+import FeaturedArticle from '../components/FeaturedArticle.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPosts, type WordPressPost } from '../lib/wordpress';
 
+let posts: WordPressPost[] = [];
+let errorMessage = '';
+
+try {
+  posts = await getPosts(13);
+} catch (error) {
+  console.error(error);
+
+  errorMessage =
+    error instanceof Error
+      ? error.message
+      : '記事の取得中に不明なエラーが発生しました。';
+}
+
+const featuredPost = posts[0];
+const latestPosts = posts.slice(1);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="JiJi Style"
+  description="Classic menswear, jackets, suits, shoes and daily style."
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
+      {
+        errorMessage ? (
+          <div
+            class="rounded border border-red-300 bg-red-50 p-5"
+            role="alert"
+          >
+            <h1 class="font-bold">記事を取得できませんでした</h1>
+            <pre class="mt-3 overflow-auto text-sm">{errorMessage}</pre>
+          </div>
+        ) : (
+          <>
+            {featuredPost && <FeaturedArticle post={featuredPost} />}
+
+            <section class="pt-16 md:pt-24">
+              <div class="mb-10 flex items-end justify-between border-b border-jiji-border pb-5">
+                <div>
+                  <p class="mb-2 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+                    Journal
+                  </p>
+
+                  <h2 class="font-serif text-4xl font-bold md:text-5xl">
+                    Latest Stories
+                  </h2>
+                </div>
+
+                <p class="hidden max-w-[24rem] text-right text-sm leading-6 text-jiji-muted md:block">
+                  Clothing, personal style and the pleasure of dressing well.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+                {
+                  latestPosts.map((post, index) => (
+                    <ArticleCard
+                      post={post}
+                      priority={index < 2}
+                    />
+                  ))
+                }
+              </div>
+            </section>
+          </>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

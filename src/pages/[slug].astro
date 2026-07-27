@@ -1,0 +1,112 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  decodeWordPressSlug,
+  getAllPosts,
+  getFeaturedImage,
+  getPostCategories,
+  type WordPressPost,
+} from '../lib/wordpress';
+import { stripHtml } from '../lib/text';
+
+export const getStaticPaths = (async () => {
+  const posts = await getAllPosts();
+
+  return posts.map((post) => ({
+    params: {
+      slug: decodeWordPressSlug(post.slug),
+    },
+    props: {
+      post,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  post: WordPressPost;
+}
+
+const { post } = Astro.props;
+
+const title = stripHtml(post.title.rendered);
+const description =
+  stripHtml(post.excerpt.rendered).slice(0, 160) ||
+  'JiJi Styleの記事です。';
+
+const featuredImage = getFeaturedImage(post);
+const categories = getPostCategories(post);
+
+const formattedDate = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(post.date));
+
+const decodedSlug = decodeWordPressSlug(post.slug);
+const canonical = `https://style.yh-inc.jp/${decodedSlug}/`;
+
+const imageWidth =
+  featuredImage?.media_details?.width ?? 1600;
+
+const imageHeight =
+  featuredImage?.media_details?.height ?? 1200;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+>
+  <article class="py-10 md:py-16 lg:py-20">
+    <div class="mx-auto w-full max-w-[900px] px-5 md:px-8">
+      <header class="mb-10 md:mb-14">
+        {
+          categories.length > 0 && (
+            <p class="mb-4 text-xs tracking-[0.16em] text-jiji-muted uppercase">
+              {categories.map((category) => category.name).join(' / ')}
+            </p>
+          )
+        }
+
+        <h1 class="font-serif text-4xl leading-[1.15] font-bold text-balance md:text-5xl lg:text-6xl">
+          {title}
+        </h1>
+
+        <time
+          class="mt-5 block text-sm text-jiji-muted"
+          datetime={post.date}
+        >
+          {formattedDate}
+        </time>
+      </header>
+
+      {
+        featuredImage && (
+          <figure class="mb-10 md:mb-14">
+            <Image
+              class="h-auto w-full"
+              src={featuredImage.source_url}
+              alt={featuredImage.alt_text || title}
+              width={imageWidth}
+              height={imageHeight}
+              widths={[720, 960, 1280, 1600]}
+              sizes="(max-width: 960px) 100vw, 900px"
+              format="webp"
+              quality={86}
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </figure>
+        )
+      }
+
+      <div
+        class="wp-content text-[1rem] leading-8 text-neutral-800 md:text-[1.05rem]"
+        set:html={post.content.rendered}
+      />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: Georgia, "Times New Roman", serif;
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+
+  --color-jiji-text: #222222;
+  --color-jiji-muted: #666666;
+  --color-jiji-border: #dedede;
+  --color-jiji-background: #ffffff;
+
+  --breakpoint-xs: 30rem;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-jiji-text);
+    background: var(--color-jiji-background);
+  }
+
+  body {
+    margin: 0;
+    line-height: 1.7;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .wp-content > :first-child {
+    margin-top: 0;
+  }
+
+  .wp-content p {
+    margin-bottom: 1.6em;
+  }
+
+  .wp-content h2 {
+    margin-top: 2.4em;
+    margin-bottom: 0.9em;
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .wp-content h3 {
+    margin-top: 2.1em;
+    margin-bottom: 0.8em;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .wp-content h4 {
+    margin-top: 2em;
+    margin-bottom: 0.7em;
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .wp-content img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wp-content figure {
+    margin-block: 2.5em;
+  }
+
+  .wp-content figcaption {
+    margin-top: 0.75em;
+    color: var(--color-jiji-muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .wp-content blockquote {
+    margin-block: 2em;
+    padding-left: 1.4em;
+    border-left: 3px solid var(--color-jiji-border);
+    color: #555;
+  }
+
+  .wp-content ul,
+  .wp-content ol {
+    margin-bottom: 1.6em;
+    padding-left: 1.5em;
+  }
+
+  .wp-content ul {
+    list-style: disc;
+  }
+
+  .wp-content ol {
+    list-style: decimal;
+  }
+
+  .wp-content a {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .wp-content iframe,
+  .wp-content video {
+    max-width: 100%;
+  }
+
+  .wp-content .wp-block-image {
+    margin-block: 2.5em;
+  }
+
+  .wp-content .wp-block-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-block: 2.5em;
+  }
+}
+
+@media (max-width: 640px) {
+  .wp-content .wp-block-gallery {
+    grid-template-columns: 1fr;
+  }
+}

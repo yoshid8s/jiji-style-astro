@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = 'Classic menswear and daily style from JiJi Style.',
+  canonical,
+} = Astro.props;
+
+const siteName = 'JiJi Style';
+const fullTitle =
+  title === siteName ? title : `${title} | ${siteName}`;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    {canonical && <link rel="canonical" href={canonical} />}
+  </head>
+
+  <body class="min-h-screen bg-white text-jiji-text">
+    <header class="border-b border-jiji-border">
+      <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
+        <div class="flex items-end justify-between gap-8 py-7 md:py-10">
+          <div>
+            <a
+              class="inline-block font-serif text-5xl leading-none font-bold no-underline md:text-6xl"
+              href="/"
+            >
+              JiJi Style
+            </a>
+
+            <p class="mt-3 text-sm tracking-wide text-jiji-muted md:text-base">
+              Classic menswear and daily style
+            </p>
+          </div>
+
+          <p class="hidden max-w-[20rem] text-right text-xs leading-5 tracking-wide text-jiji-muted md:block">
+            A personal journal about clothing, style and living well.
+          </p>
+        </div>
+
+        <nav
+          class="overflow-x-auto border-t border-jiji-border"
+          aria-label="カテゴリー"
+        >
+          <ul class="flex min-w-max gap-7 py-4 text-xs tracking-[0.14em] uppercase">
+            <li><a class="no-underline hover:opacity-50" href="/">Latest</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/daily-style/">Daily Style</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/jackets-suits/">Jackets &amp; Suits</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/shoes/">Shoes</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/shirts/">Shirts</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/ties/">Ties</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/coats/">Coats</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-jiji-border py-7 text-sm text-jiji-muted">
+      <div class="mx-auto w-[min(calc(100%-2.5rem),73.75rem)]">
+        <p>© Y&amp;H Inc. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

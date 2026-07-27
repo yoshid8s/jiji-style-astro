@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import {
+  decodeWordPressSlug,
+  getFeaturedImage,
+  getPostCategories,
+  type WordPressPost,
+} from '../lib/wordpress';
+import { stripHtml } from '../lib/text';
+
+interface Props {
+  post: WordPressPost;
+}
+
+const { post } = Astro.props;
+
+const featuredImage = getFeaturedImage(post);
+const categories = getPostCategories(post);
+const title = stripHtml(post.title.rendered);
+const excerpt = stripHtml(post.excerpt.rendered);
+const postUrl = `/${decodeWordPressSlug(post.slug)}/`;
+
+const formattedDate = new Intl.DateTimeFormat('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(new Date(post.date));
+
+const imageWidth =
+  featuredImage?.media_details?.width ?? 1600;
+
+const imageHeight =
+  featuredImage?.media_details?.height ?? 1200;
+---
+
+<article class="grid items-center gap-8 border-y border-jiji-border py-8 md:grid-cols-[1.4fr_1fr] md:gap-12 md:py-12">
+  {
+    featuredImage && (
+      <a
+        class="group block overflow-hidden bg-neutral-100"
+        href={postUrl}
+      >
+        <Image
+          class="aspect-[16/11] w-full object-cover transition duration-700 ease-out group-hover:scale-[1.02]"
+          src={featuredImage.source_url}
+          alt={featuredImage.alt_text || title}
+          width={imageWidth}
+          height={imageHeight}
+          widths={[640, 960, 1280, 1600]}
+          sizes="(max-width: 768px) 100vw, 60vw"
+          format="webp"
+          quality={85}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </a>
+    )
+  }
+
+  <div>
+    <p class="mb-5 text-xs font-medium tracking-[0.2em] text-jiji-muted uppercase">
+      Featured Story
+    </p>
+
+    {
+      categories.length > 0 && (
+        <p class="mb-3 text-xs tracking-[0.14em] text-jiji-muted uppercase">
+          {categories.map((category) => category.name).join(' / ')}
+        </p>
+      )
+    }
+
+    <h1 class="font-serif text-4xl leading-[1.08] font-bold text-balance md:text-5xl lg:text-6xl">
+      <a
+        class="no-underline transition-opacity hover:opacity-60"
+        href={postUrl}
+      >
+        {title}
+      </a>
+    </h1>
+
+    <time
+      class="mt-5 block text-sm text-jiji-muted"
+      datetime={post.date}
+    >
+      {formattedDate}
+    </time>
+
+    {
+      excerpt && (
+        <p class="mt-6 max-w-[38rem] text-base leading-8 text-neutral-700">
+          {excerpt}
+        </p>
+      )
+    }
+
+    <a
+      class="mt-7 inline-flex border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
+      href={postUrl}
+    >
+      Read the story
+    </a>
+  </div>
+</article>
