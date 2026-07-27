@@ -37,7 +37,7 @@ const description =
   stripHtml(post.excerpt.rendered).slice(0, 160) ||
   'JiJi Styleの記事です。';
 const featuredImage = getFeaturedImage(post);
-const categories = getPostCategories(post);
+const categories = getPostCategories(post).map((category) => ({\n  ...category,\n  name: stripHtml(category.name),\n}));
 
 const formattedDate = new Intl.DateTimeFormat('ja-JP', {
   year: 'numeric',
