@@ -9,7 +9,6 @@ import {
   getAllPosts,
   getFeaturedImage,
   getPostCategories,
-  getPostsByCategory,
   type WordPressPost,
 } from '../lib/wordpress';
 import { stripHtml } from '../lib/text';
@@ -17,21 +16,36 @@ import { stripHtml } from '../lib/text';
 export const getStaticPaths = (async () => {
   const posts = await getAllPosts();
 
-  return posts.map((post) => ({
-    params: {
-      slug: decodeWordPressSlug(post.slug),
-    },
-    props: {
-      post,
-    },
-  }));
+  return posts.map((post) => {
+    const categoryId = post.categories[0];
+    const relatedPosts = categoryId
+      ? posts
+          .filter(
+            (candidate) =>
+              candidate.id !== post.id &&
+              candidate.categories.includes(categoryId),
+          )
+          .slice(0, 3)
+      : [];
+
+    return {
+      params: {
+        slug: decodeWordPressSlug(post.slug),
+      },
+      props: {
+        post,
+        relatedPosts,
+      },
+    };
+  });
 }) satisfies GetStaticPaths;
 
 interface Props {
   post: WordPressPost;
+  relatedPosts: WordPressPost[];
 }
 
-const { post } = Astro.props;
+const { post, relatedPosts } = Astro.props;
 const title = stripHtml(post.title.rendered);
 const description =
   stripHtml(post.excerpt.rendered).slice(0, 160) ||
@@ -53,14 +67,6 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '');
 const canonical = siteUrl ? `${siteUrl}/${decodedSlug}/` : undefined;
 const imageWidth = featuredImage?.media_details?.width ?? 1600;
 const imageHeight = featuredImage?.media_details?.height ?? 1200;
-
-let relatedPosts: WordPressPost[] = [];
-
-if (categories[0]) {
-  relatedPosts = (await getPostsByCategory(categories[0].id))
-    .filter((candidate) => candidate.id !== post.id)
-    .slice(0, 3);
-}
 ---
 
 <BaseLayout
