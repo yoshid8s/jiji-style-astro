@@ -87,14 +87,17 @@ if (categories[0]) {
       <header class="mb-10 mt-8 md:mb-14 md:mt-10">
         {
           categories.length > 0 && (
-            <p class="mb-4 text-xs tracking-[0.16em] text-jiji-muted uppercase">
-              {categories.map((category) => (
-                <a
-                  class="transition-opacity hover:opacity-50"
-                  href={`/category/${category.slug}/`}
-                >
-                  {category.name}
-                </a>
+            <p class="mb-4 flex flex-wrap gap-x-2 text-xs tracking-[0.16em] text-jiji-muted uppercase">
+              {categories.map((category, index) => (
+                <>
+                  {index > 0 && <span aria-hidden="true">/</span>}
+                  <a
+                    class="transition-opacity hover:opacity-50"
+                    href={`/category/${category.slug}/`}
+                  >
+                    {category.name}
+                  </a>
+                </>
               ))}
             </p>
           )
