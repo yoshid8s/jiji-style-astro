@@ -15,7 +15,7 @@ interface Props {
 const { post } = Astro.props;
 
 const featuredImage = getFeaturedImage(post);
-const categories = getPostCategories(post);
+const categories = getPostCategories(post).map((category) => ({\n  ...category,\n  name: stripHtml(category.name),\n}));
 const title = stripHtml(post.title.rendered);
 const excerpt = stripHtml(post.excerpt.rendered);
 const postUrl = `/${decodeWordPressSlug(post.slug)}/`;
