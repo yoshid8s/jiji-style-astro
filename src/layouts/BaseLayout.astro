@@ -10,7 +10,14 @@ interface Props {
   type?: 'website' | 'article';
 }
 
-const { title, description, canonical, image, type } = Astro.props;
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  image,
+  type,
+} = Astro.props;
+
 const seo = createSeo({
   title,
   description,
@@ -33,13 +40,13 @@ const seo = createSeo({
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
 
-    {seo.canonical && <link rel="canonical" href={seo.canonical} />}
+    <link rel="canonical" href={seo.canonical} />
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:site_name" content={seo.siteName} />
     <meta property="og:type" content={seo.type} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
-    {seo.canonical && <meta property="og:url" content={seo.canonical} />}
+    <meta property="og:url" content={seo.canonical} />
     {seo.image && <meta property="og:image" content={seo.image} />}
     <meta name="twitter:card" content={seo.image ? 'summary_large_image' : 'summary'} />
     <meta name="twitter:title" content={seo.title} />
