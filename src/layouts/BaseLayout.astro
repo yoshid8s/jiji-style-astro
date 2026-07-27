@@ -1,21 +1,30 @@
 ---
 import '../styles/global.css';
+import { createSeo } from '../lib/seo';
 
 interface Props {
   title: string;
   description?: string;
   canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
 }
 
 const {
   title,
-  description = 'Classic menswear and daily style from JiJi Style.',
-  canonical,
+  description,
+  canonical = Astro.url.href,
+  image,
+  type,
 } = Astro.props;
 
-const siteName = 'JiJi Style';
-const fullTitle =
-  title === siteName ? title : `${title} | ${siteName}`;
+const seo = createSeo({
+  title,
+  description,
+  canonical,
+  image,
+  type,
+});
 ---
 
 <!doctype html>
@@ -28,10 +37,21 @@ const fullTitle =
     />
     <meta name="generator" content={Astro.generator} />
 
-    <title>{fullTitle}</title>
-    <meta name="description" content={description} />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
 
-    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="canonical" href={seo.canonical} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content={seo.siteName} />
+    <meta property="og:type" content={seo.type} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonical} />
+    {seo.image && <meta property="og:image" content={seo.image} />}
+    <meta name="twitter:card" content={seo.image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={seo.title} />
+    <meta name="twitter:description" content={seo.description} />
+    {seo.image && <meta name="twitter:image" content={seo.image} />}
   </head>
 
   <body class="min-h-screen bg-white text-jiji-text">
@@ -63,7 +83,7 @@ const fullTitle =
           <ul class="flex min-w-max gap-7 py-4 text-xs tracking-[0.14em] uppercase">
             <li><a class="no-underline hover:opacity-50" href="/">Latest</a></li>
             <li><a class="no-underline hover:opacity-50" href="/category/daily-style/">Daily Style</a></li>
-            <li><a class="no-underline hover:opacity-50" href="/category/jackets-suits/">Jackets &amp; Suits</a></li>
+            <li><a class="no-underline hover:opacity-50" href="/category/jackets_suits/">Jackets &amp; Suits</a></li>
             <li><a class="no-underline hover:opacity-50" href="/category/shoes/">Shoes</a></li>
             <li><a class="no-underline hover:opacity-50" href="/category/shirts/">Shirts</a></li>
             <li><a class="no-underline hover:opacity-50" href="/category/ties/">Ties</a></li>

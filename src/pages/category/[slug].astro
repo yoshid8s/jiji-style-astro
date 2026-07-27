@@ -1,0 +1,71 @@
+---
+import ArticleCard from '../../components/ArticleCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  getCategories,
+  getPostsByCategory,
+  type WordPressCategory,
+} from '../../lib/wordpress';
+import { stripHtml } from '../../lib/text';
+
+export async function getStaticPaths() {
+  const categories = await getCategories();
+
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: { category },
+  }));
+}
+
+interface Props {
+  category: WordPressCategory;
+}
+
+const { category } = Astro.props;
+const categoryName = stripHtml(category.name);
+const posts = await getPostsByCategory(category.id);
+const description =
+  stripHtml(category.description) || `${categoryName}の記事一覧です。`;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '');
+const canonical = siteUrl ? `${siteUrl}/category/${category.slug}/` : undefined;
+---
+
+<BaseLayout title={categoryName} description={description} canonical={canonical}>
+  <section class="py-10 md:py-16 lg:py-20">
+    <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: categoryName },
+        ]}
+      />
+
+      <header class="mt-8 border-b border-jiji-border pb-8 md:mt-10 md:pb-10">
+        <p class="mb-3 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+          Category
+        </p>
+        <h1 class="font-serif text-4xl font-bold md:text-5xl">
+          {categoryName}
+        </h1>
+        {
+          category.description && (
+            <p class="mt-4 max-w-2xl text-sm leading-7 text-jiji-muted md:text-base" set:html={category.description} />
+          )
+        }
+      </header>
+
+      {
+        posts.length > 0 ? (
+          <div class="mt-10 grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 md:mt-14">
+            {posts.map((post, index) => (
+              <ArticleCard post={post} priority={index < 3} />
+            ))}
+          </div>
+        ) : (
+          <p class="mt-10 text-jiji-muted">このカテゴリーにはまだ記事がありません。</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

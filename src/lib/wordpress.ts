@@ -1,9 +1,8 @@
 const WORDPRESS_API_URL = import.meta.env.WORDPRESS_API_URL;
+const embeddedFields = 'wp:featuredmedia,wp:term';
 
 if (!WORDPRESS_API_URL) {
-  throw new Error(
-    "WORDPRESS_API_URLが設定されていません。.envを確認してください。",
-  );
+  throw new Error('WORDPRESS_API_URLが設定されていません。.envを確認してください。');
 }
 
 export interface RenderedContent {
@@ -35,6 +34,14 @@ export interface WordPressTerm {
   taxonomy: string;
 }
 
+export interface WordPressCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  count: number;
+}
+
 export interface WordPressPost {
   id: number;
   date: string;
@@ -50,8 +57,8 @@ export interface WordPressPost {
   categories: number[];
   tags: number[];
   _embedded?: {
-    "wp:featuredmedia"?: FeaturedMedia[];
-    "wp:term"?: WordPressTerm[][];
+    'wp:featuredmedia'?: FeaturedMedia[];
+    'wp:term'?: WordPressTerm[][];
   };
 }
 
@@ -64,7 +71,7 @@ async function fetchWordPress<T>(
   const response = await fetch(url, {
     ...options,
     headers: {
-      Accept: "application/json",
+      Accept: 'application/json',
       ...options?.headers,
     },
   });
@@ -78,6 +85,17 @@ async function fetchWordPress<T>(
   return response.json() as Promise<T>;
 }
 
+export function getCategories(): Promise<WordPressCategory[]> {
+  const params = new URLSearchParams({
+    hide_empty: 'true',
+    per_page: '100',
+  });
+
+  return fetchWordPress<WordPressCategory[]>(
+    `/categories?${params.toString()}`,
+  );
+}
+
 export async function getPosts(
   perPage = 10,
   page = 1,
@@ -85,11 +103,29 @@ export async function getPosts(
   const params = new URLSearchParams({
     per_page: String(perPage),
     page: String(page),
-    status: "publish",
-    _embed: "wp:featuredmedia,wp:term",
+    status: 'publish',
+    _embed: embeddedFields,
   });
 
-  return fetchWordPress<WordPressPost[]>(`/posts?${params.toString()}`);
+  return fetchWordPress<WordPressPost[]>(
+    `/posts?${params.toString()}`,
+  );
+}
+
+export function getPostsByCategory(
+  categoryId: number,
+  perPage = 100,
+): Promise<WordPressPost[]> {
+  const params = new URLSearchParams({
+    categories: String(categoryId),
+    per_page: String(perPage),
+    status: 'publish',
+    _embed: embeddedFields,
+  });
+
+  return fetchWordPress<WordPressPost[]>(
+    `/posts?${params.toString()}`,
+  );
 }
 
 export async function getAllPosts(): Promise<WordPressPost[]> {
@@ -98,17 +134,17 @@ export async function getAllPosts(): Promise<WordPressPost[]> {
 
   while (true) {
     const params = new URLSearchParams({
-      per_page: "100",
+      per_page: '100',
       page: String(page),
-      status: "publish",
-      _embed: "wp:featuredmedia,wp:term",
+      status: 'publish',
+      _embed: embeddedFields,
     });
 
     const response = await fetch(
       `${WORDPRESS_API_URL}/posts?${params.toString()}`,
       {
         headers: {
-          Accept: "application/json",
+          Accept: 'application/json',
         },
       },
     );
@@ -123,7 +159,7 @@ export async function getAllPosts(): Promise<WordPressPost[]> {
 
     allPosts.push(...posts);
 
-    const totalPages = Number(response.headers.get("X-WP-TotalPages") ?? "1");
+    const totalPages = Number(response.headers.get('X-WP-TotalPages') ?? '1');
 
     if (page >= totalPages) {
       break;
@@ -138,13 +174,13 @@ export async function getAllPosts(): Promise<WordPressPost[]> {
 export function getFeaturedImage(
   post: WordPressPost,
 ): FeaturedMedia | undefined {
-  return post._embedded?.["wp:featuredmedia"]?.[0];
+  return post._embedded?.['wp:featuredmedia']?.[0];
 }
 
 export function getPostCategories(post: WordPressPost): WordPressTerm[] {
   return (
-    post._embedded?.["wp:term"]?.find((terms) =>
-      terms.some((term) => term.taxonomy === "category"),
+    post._embedded?.['wp:term']?.find((terms) =>
+      terms.some((term) => term.taxonomy === 'category'),
     ) ?? []
   );
 }
