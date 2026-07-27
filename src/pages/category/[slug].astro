@@ -23,8 +23,10 @@ interface Props {
 }
 
 const { category } = Astro.props;
+const categoryName = stripHtml(category.name);
 const posts = await getPostsByCategory(category.id);
-const description = stripHtml(category.description) || `${categoryName}の記事一覧です。`;
+const description =
+  stripHtml(category.description) || `${categoryName}の記事一覧です。`;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '');
 const canonical = siteUrl ? `${siteUrl}/category/${category.slug}/` : undefined;
 ---
