@@ -1,8 +1,10 @@
 ---
+import FeaturedArticle from '../components/FeaturedArticle.astro';
 import HomeArticleSection from '../components/HomeArticleSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   getCategories,
+  getPosts,
   getPostsByCategory,
   type WordPressPost,
 } from '../lib/wordpress';
@@ -13,6 +15,7 @@ const sectionDefinitions = [
   { slug: 'classic-menswear', title: 'Classic Menswear', postCount: 6 },
 ] as const;
 
+let featuredPost: WordPressPost | undefined;
 let sections: Array<{
   slug: string;
   title: string;
@@ -21,7 +24,12 @@ let sections: Array<{
 let errorMessage = '';
 
 try {
-  const categories = await getCategories();
+  const [categories, latestPosts] = await Promise.all([
+    getCategories(),
+    getPosts(1),
+  ]);
+
+  featuredPost = latestPosts[0];
 
   sections = (
     await Promise.all(
@@ -77,6 +85,14 @@ try {
           </div>
         ) : (
           <>
+            {
+              featuredPost && (
+                <section class="pb-14 md:pb-20">
+                  <FeaturedArticle post={featuredPost} />
+                </section>
+              )
+            }
+
             {sections.map((section) => (
               <HomeArticleSection
                 title={section.title}
