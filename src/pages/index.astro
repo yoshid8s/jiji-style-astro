@@ -1,11 +1,10 @@
 ---
-import FeaturedArticle from '../components/FeaturedArticle.astro';
+import HomeHero from '../components/HomeHero.astro';
 import HomeArticleSection from '../components/HomeArticleSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   getCategories,
-  getPosts,
-  getPostsByCategory,
+  getAllPosts,
   type WordPressPost,
 } from '../lib/wordpress';
 
@@ -24,12 +23,12 @@ let sections: Array<{
 let errorMessage = '';
 
 try {
-  const [categories, latestPosts] = await Promise.all([
+  const [categories, allPosts] = await Promise.all([
     getCategories(),
-    getPosts(1),
+    getAllPosts(),
   ]);
 
-  featuredPost = latestPosts[0];
+  featuredPost = allPosts[0];
 
   sections = (
     await Promise.all(
@@ -40,7 +39,22 @@ try {
           return null;
         }
 
-        const posts = await getPostsByCategory(category.id, postCount);
+        const categoryIds = new Set([
+          category.id,
+          ...categories
+            .filter((item) => item.parent === category.id)
+            .map((item) => item.id),
+        ]);
+
+        const posts = allPosts
+          .filter((post) =>
+            post.categories.some((categoryId) => categoryIds.has(categoryId)),
+          )
+          .sort(
+            (first, second) =>
+              new Date(second.date).getTime() - new Date(first.date).getTime(),
+          )
+          .slice(0, postCount);
 
         return {
           slug,
@@ -72,10 +86,8 @@ try {
   title="JiJi Style"
   description="Enjoy dressing well."
 >
-  <section class="py-8 md:py-12">
-    <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
-      {
-        errorMessage ? (
+  {
+    errorMessage ? (
           <div
             class="rounded border border-red-300 bg-red-50 p-5"
             role="alert"
@@ -83,16 +95,12 @@ try {
             <h1 class="font-bold">記事を取得できませんでした</h1>
             <pre class="mt-3 overflow-auto text-sm">{errorMessage}</pre>
           </div>
-        ) : (
-          <>
-            {
-              featuredPost && (
-                <section class="pb-14 md:pb-20">
-                  <FeaturedArticle post={featuredPost} />
-                </section>
-              )
-            }
+    ) : (
+      <>
+        {featuredPost && <HomeHero post={featuredPost} />}
 
+        <section class="py-8 md:py-12">
+          <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
             {sections.map((section) => (
               <HomeArticleSection
                 title={section.title}
@@ -152,9 +160,9 @@ try {
                 </a>
               </div>
             </section>
-          </>
-        )
-      }
-    </div>
-  </section>
+          </div>
+        </section>
+      </>
+    )
+  }
 </BaseLayout>
