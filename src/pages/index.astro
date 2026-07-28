@@ -1,14 +1,55 @@
 ---
-import ArticleCard from '../components/ArticleCard.astro';
-import FeaturedArticle from '../components/FeaturedArticle.astro';
+import HomeArticleSection from '../components/HomeArticleSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getPosts, type WordPressPost } from '../lib/wordpress';
+import {
+  getCategories,
+  getPostsByCategory,
+  type WordPressPost,
+} from '../lib/wordpress';
 
-let posts: WordPressPost[] = [];
+const sectionDefinitions = [
+  { slug: 'daily-style', title: 'Daily Style', postCount: 3 },
+  { slug: 'wardrobe', title: 'Wardrobe', postCount: 6 },
+  { slug: 'classic-menswear', title: 'Classic Menswear', postCount: 6 },
+] as const;
+
+let sections: Array<{
+  slug: string;
+  title: string;
+  posts: WordPressPost[];
+}> = [];
 let errorMessage = '';
 
 try {
-  posts = await getPosts(13);
+  const categories = await getCategories();
+
+  sections = (
+    await Promise.all(
+      sectionDefinitions.map(async ({ slug, title, postCount }) => {
+        const category = categories.find((item) => item.slug === slug);
+
+        if (!category) {
+          return null;
+        }
+
+        const posts = await getPostsByCategory(category.id, postCount);
+
+        return {
+          slug,
+          title,
+          posts,
+        };
+      }),
+    )
+  ).filter(
+    (
+      section,
+    ): section is {
+      slug: string;
+      title: string;
+      posts: WordPressPost[];
+    } => section !== null && section.posts.length > 0,
+  );
 } catch (error) {
   console.error(error);
 
@@ -17,14 +58,11 @@ try {
       ? error.message
       : '記事の取得中に不明なエラーが発生しました。';
 }
-
-const featuredPost = posts[0];
-const latestPosts = posts.slice(1);
 ---
 
 <BaseLayout
   title="JiJi Style"
-  description="Classic menswear, jackets, suits, shoes and daily style."
+  description="Enjoy dressing well."
 >
   <section class="py-8 md:py-12">
     <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
@@ -39,34 +77,63 @@ const latestPosts = posts.slice(1);
           </div>
         ) : (
           <>
-            {featuredPost && <FeaturedArticle post={featuredPost} />}
+            {sections.map((section) => (
+              <HomeArticleSection
+                title={section.title}
+                posts={section.posts}
+                href={`/category/${section.slug}/`}
+              />
+            ))}
 
-            <section class="pt-16 md:pt-24">
-              <div class="mb-10 flex items-end justify-between border-b border-jiji-border pb-5">
+            <section class="border-t border-jiji-border py-14 md:py-20">
+              <div class="grid gap-8 md:grid-cols-[220px_1fr] md:items-start md:gap-14">
+                <img
+                  class="aspect-square w-full max-w-[220px] object-cover"
+                  src="https://style.yh-inc.jp/wp-content/uploads/2024/04/jiji_profile.png"
+                  alt="ジジイことYoshifumi Takeuchi"
+                  width="500"
+                  height="500"
+                  loading="lazy"
+                />
+
                 <div>
-                  <p class="mb-2 text-xs tracking-[0.2em] text-jiji-muted uppercase">
-                    Journal
+                  <p class="mb-3 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+                    About JiJi
                   </p>
+                  <h2 class="font-serif text-4xl font-bold md:text-5xl">JiJi</h2>
+                  <p class="mt-6 max-w-[34rem] text-base leading-8 text-neutral-700">
+                    Classic menswear enthusiast. I write about timeless style,
+                    my wardrobe, and daily outfits.
+                  </p>
+                  <a
+                    class="mt-7 inline-flex border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
+                    href="/about/"
+                  >
+                    About JiJi
+                  </a>
+                </div>
+              </div>
+            </section>
 
+            <section class="border-t border-jiji-border py-14 md:py-20">
+              <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p class="mb-3 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+                    Instagram
+                  </p>
                   <h2 class="font-serif text-4xl font-bold md:text-5xl">
-                    Latest Stories
+                    Daily Style
                   </h2>
                 </div>
 
-                <p class="hidden max-w-[24rem] text-right text-sm leading-6 text-jiji-muted md:block">
-                  Clothing, personal style and the pleasure of dressing well.
-                </p>
-              </div>
-
-              <div class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-                {
-                  latestPosts.map((post, index) => (
-                    <ArticleCard
-                      post={post}
-                      priority={index < 2}
-                    />
-                  ))
-                }
+                <a
+                  class="border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
+                  href="https://www.instagram.com/yoshid8s/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Instagram でフォロー
+                </a>
               </div>
             </section>
           </>
