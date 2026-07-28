@@ -1,0 +1,29 @@
+---
+import ArticleCard from './ArticleCard.astro';
+import type { WordPressPost } from '../lib/wordpress';
+
+interface Props {
+  title: string;
+  posts: WordPressPost[];
+  href: string;
+}
+
+const { title, posts, href } = Astro.props;
+---
+
+<section class="border-t border-jiji-border py-14 first:border-t-0 md:py-20">
+  <div class="mb-9 flex items-end justify-between gap-6 md:mb-11">
+    <h2 class="font-serif text-4xl font-bold md:text-5xl">{title}</h2>
+
+    <a
+      class="border-b border-current pb-1 text-xs tracking-[0.12em] uppercase no-underline transition-opacity hover:opacity-50"
+      href={href}
+    >
+      View all
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+    {posts.map((post, index) => <ArticleCard post={post} priority={index < 3} />)}
+  </div>
+</section>

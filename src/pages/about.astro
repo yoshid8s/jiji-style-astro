@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About JiJi"
+  description="JiJi Styleについて"
+>
+  <section class="py-12 md:py-20">
+    <div class="mx-auto grid w-full max-w-[900px] gap-10 px-5 md:grid-cols-[260px_1fr] md:gap-14 md:px-8">
+      <img
+        class="aspect-square w-full object-cover"
+        src="https://style.yh-inc.jp/wp-content/uploads/2024/04/jiji_profile.png"
+        alt="ジジイことYoshifumi Takeuchi"
+        width="500"
+        height="500"
+      />
+
+      <div>
+        <p class="mb-3 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+          About JiJi
+        </p>
+        <h1 class="font-serif text-5xl font-bold md:text-6xl">JiJi</h1>
+
+        <div class="mt-8 space-y-5 text-[1rem] leading-8 text-neutral-700">
+          <p>
+            Classic menswear enthusiast. I write about timeless style, my
+            wardrobe, and daily outfits.
+          </p>
+          <p>
+            JiJi Styleでは、ジャケット、スーツ、シャツ、靴など、長く愛用している服と日々の装いを紹介しています。
+          </p>
+        </div>
+
+        <a
+          class="mt-8 inline-flex border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
+          href="https://www.instagram.com/yoshid8s/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Instagram でフォロー
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

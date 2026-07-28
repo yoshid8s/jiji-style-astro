@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import {
+  decodeWordPressSlug,
+  getFeaturedImage,
+  getPostCategories,
+  type WordPressPost,
+} from '../lib/wordpress';
+import { stripHtml } from '../lib/text';
+
+interface Props {
+  post: WordPressPost;
+}
+
+const { post } = Astro.props;
+const featuredImage = getFeaturedImage(post);
+const title = stripHtml(post.title.rendered);
+const category = getPostCategories(post)[0];
+const postUrl = `/${decodeWordPressSlug(post.slug)}/`;
+const imageWidth = featuredImage?.media_details?.width ?? 1600;
+const imageHeight = featuredImage?.media_details?.height ?? 1200;
+---
+
+{
+  featuredImage && (
+    <article class="relative isolate overflow-hidden bg-neutral-900">
+      <a class="group block" href={postUrl}>
+        <Image
+          class="h-[clamp(24rem,48vw,44rem)] w-full object-cover transition duration-700 ease-out group-hover:scale-[1.015]"
+          src={featuredImage.source_url}
+          alt={featuredImage.alt_text || title}
+          width={imageWidth}
+          height={imageHeight}
+          widths={[768, 1280, 1600, 2000]}
+          sizes="100vw"
+          format="webp"
+          quality={88}
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-transparent"></div>
+
+        <div class="absolute inset-x-0 bottom-0 mx-auto w-full max-w-[1280px] px-5 pb-10 text-white md:px-8 md:pb-14">
+          {
+            category && (
+              <p class="mb-3 text-xs tracking-[0.2em] uppercase text-white/80">
+                {stripHtml(category.name)}
+              </p>
+            )
+          }
+
+          <h1 class="max-w-[17ch] font-serif text-4xl leading-[1.08] font-bold text-balance md:text-6xl lg:text-7xl">
+            {title}
+          </h1>
+
+          <span class="mt-6 inline-flex border-b border-white pb-1 text-sm tracking-wide">
+            Read the story
+          </span>
+        </div>
+      </a>
+    </article>
+  )
+}
