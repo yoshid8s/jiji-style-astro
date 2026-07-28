@@ -67,49 +67,51 @@ const { ad, placement, postId } = Astro.props;
         genre: ad.genre,
       }}
     >
-      const report = (event, seconds) => {
-        fetch(eventUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            event,
-            ad_id: adId,
-            placement,
-            post_id: postId,
-            genre,
-            seconds,
-          }),
-          keepalive: true,
-        }).catch(() => {});
-      };
-
-      report('impression');
-
-      if (placement === 'bottom') {
-        const slot = document.querySelector(
-          `[data-cam-placement="${placement}"]`,
-        );
-
-        if (slot && 'IntersectionObserver' in window) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              if (entries.some((entry) => entry.isIntersecting)) {
-                report('bottom_reach');
-                observer.disconnect();
-              }
+      (() => {
+        const report = (event, seconds) => {
+          fetch(eventUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
             },
-            { threshold: 0.2 },
+            body: JSON.stringify({
+              event,
+              ad_id: adId,
+              placement,
+              post_id: postId,
+              genre,
+              seconds,
+            }),
+            keepalive: true,
+          }).catch(() => {});
+        };
+
+        report('impression');
+
+        if (placement === 'bottom') {
+          const slot = document.querySelector(
+            `[data-cam-placement="${placement}"]`,
           );
 
-          observer.observe(slot);
-        }
+          if (slot && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                if (entries.some((entry) => entry.isIntersecting)) {
+                  report('bottom_reach');
+                  observer.disconnect();
+                }
+              },
+              { threshold: 0.2 },
+            );
 
-        [10, 30, 60].forEach((seconds) => {
-          window.setTimeout(() => report('time_reach', seconds), seconds * 1000);
-        });
-      }
+            observer.observe(slot);
+          }
+
+          [10, 30, 60].forEach((seconds) => {
+            window.setTimeout(() => report('time_reach', seconds), seconds * 1000);
+          });
+        }
+      })();
     </script>
   )
 }
