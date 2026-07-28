@@ -1,6 +1,8 @@
 const WORDPRESS_API_URL = import.meta.env.WORDPRESS_API_URL;
 const embeddedFields = 'wp:featuredmedia,wp:term';
 
+export const wordpressSiteUrl = new URL(WORDPRESS_API_URL).origin;
+
 if (!WORDPRESS_API_URL) {
   throw new Error('WORDPRESS_API_URLが設定されていません。.envを確認してください。');
 }
