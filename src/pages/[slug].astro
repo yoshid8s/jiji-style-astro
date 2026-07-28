@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { Image } from 'astro:assets';
 import ArticleCard from '../components/ArticleCard.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContentAttestation from '../components/ContentAttestation.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   decodeWordPressSlug,
@@ -12,6 +13,7 @@ import {
   type WordPressPost,
 } from '../lib/wordpress';
 import { stripHtml } from '../lib/text';
+import { getArticleContentAttestations } from '../lib/content-attestations';
 
 export const getStaticPaths = (async () => {
   const posts = await getAllPosts();
@@ -67,6 +69,7 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '');
 const canonical = siteUrl ? `${siteUrl}/${decodedSlug}/` : undefined;
 const imageWidth = featuredImage?.media_details?.width ?? 1600;
 const imageHeight = featuredImage?.media_details?.height ?? 1200;
+const issuedCas = getArticleContentAttestations(decodedSlug);
 ---
 
 <BaseLayout
@@ -146,9 +149,12 @@ const imageHeight = featuredImage?.media_details?.height ?? 1200;
       }
 
       <div
+        id="article-content"
         class="wp-content text-[1rem] leading-8 text-neutral-800 md:text-[1.05rem]"
         set:html={post.content.rendered}
       />
+
+      <ContentAttestation cas={issuedCas} />
     </div>
   </article>
 
