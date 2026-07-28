@@ -1,12 +1,16 @@
 ---
+import ContextAd from '../components/ContextAd.astro';
 import HomeHero from '../components/HomeHero.astro';
 import HomeArticleSection from '../components/HomeArticleSection.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getContextAd, type ContextAd as ContextAdData } from '../lib/context-ads';
 import {
   getCategories,
   getAllPosts,
   type WordPressPost,
 } from '../lib/wordpress';
+
+const homePageId = 2163;
 
 const sectionDefinitions = [
   { slug: 'daily-style', title: 'Daily Style', postCount: 3 },
@@ -21,12 +25,26 @@ let sections: Array<{
   posts: WordPressPost[];
 }> = [];
 let errorMessage = '';
+let contextAds: Record<'top' | 'middle' | 'bottom', ContextAdData | null> = {
+  top: null,
+  middle: null,
+  bottom: null,
+};
 
 try {
-  const [categories, allPosts] = await Promise.all([
+  const [categories, allPosts, topAd, middleAd, bottomAd] = await Promise.all([
     getCategories(),
     getAllPosts(),
+    getContextAd(homePageId, 'top'),
+    getContextAd(homePageId, 'middle'),
+    getContextAd(homePageId, 'bottom'),
   ]);
+
+  contextAds = {
+    top: topAd,
+    middle: middleAd,
+    bottom: bottomAd,
+  };
 
   featuredPost = allPosts[0];
 
@@ -101,13 +119,57 @@ try {
 
         <section class="py-8 md:py-12">
           <div class="mx-auto w-full max-w-[1280px] px-5 md:px-8">
-            {sections.map((section) => (
-              <HomeArticleSection
-                title={section.title}
-                posts={section.posts}
-                href={`/category/${section.slug}/`}
-              />
-            ))}
+            <ContextAd
+              ad={contextAds.top}
+              placement="top"
+              postId={homePageId}
+            />
+
+            {
+              sections.find((section) => section.slug === 'daily-style') && (
+                <HomeArticleSection
+                  title="Daily Style"
+                  posts={
+                    sections.find((section) => section.slug === 'daily-style')
+                      ?.posts ?? []
+                  }
+                  href="/category/daily-style/"
+                />
+              )
+            }
+
+            {
+              sections.find((section) => section.slug === 'shoes') && (
+                <HomeArticleSection
+                  title="Wardrobe"
+                  posts={
+                    sections.find((section) => section.slug === 'shoes')?.posts ??
+                    []
+                  }
+                  href="/category/shoes/"
+                />
+              )
+            }
+
+            <ContextAd
+              ad={contextAds.middle}
+              placement="middle"
+              postId={homePageId}
+            />
+
+            {
+              sections.find((section) => section.slug === 'classic-menswear') && (
+                <HomeArticleSection
+                  title="Classic Menswear"
+                  posts={
+                    sections.find(
+                      (section) => section.slug === 'classic-menswear',
+                    )?.posts ?? []
+                  }
+                  href="/category/classic-menswear/"
+                />
+              )
+            }
 
             <section class="border-t border-jiji-border py-14 md:py-20">
               <div class="grid gap-8 md:grid-cols-[220px_1fr] md:items-start md:gap-14">
