@@ -1,0 +1,115 @@
+---
+import {
+  contextAdEventUrl,
+  type ContextAd as ContextAdData,
+  type ContextAdPlacement,
+} from '../lib/context-ads';
+
+interface Props {
+  ad: ContextAdData | null;
+  placement: ContextAdPlacement;
+  postId: number;
+}
+
+const { ad, placement, postId } = Astro.props;
+---
+
+{
+  ad && (
+    <aside
+      class:list={[
+        'mx-auto w-full',
+        placement === 'top' && 'my-10 max-w-[1114px] md:my-14',
+        placement === 'middle' && 'my-14 max-w-[1114px] md:my-20',
+        placement === 'bottom' && 'mt-14 max-w-[1114px] md:mt-20',
+      ]}
+      data-cam-placement={placement}
+    >
+      {
+        ad.clickUrl ? (
+          <a
+            class="block"
+            href={ad.clickUrl}
+            aria-label={ad.headline || ad.advertiser || 'Advertisement'}
+          >
+            <img
+              id={ad.elementId}
+              class="h-auto w-full"
+              src={ad.image}
+              alt={ad.headline || ad.advertiser || 'Advertisement'}
+              loading="lazy"
+              decoding="async"
+            />
+          </a>
+        ) : (
+          <img
+            id={ad.elementId}
+            class="h-auto w-full"
+            src={ad.image}
+            alt={ad.headline || ad.advertiser || 'Advertisement'}
+            loading="lazy"
+            decoding="async"
+          />
+        )
+      }
+    </aside>
+  )
+}
+
+{
+  ad && (
+    <script
+      define:vars={{
+        eventUrl: contextAdEventUrl,
+        adId: ad.id,
+        placement,
+        postId,
+        genre: ad.genre,
+      }}
+    >
+      const report = (event, seconds) => {
+        fetch(eventUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            event,
+            ad_id: adId,
+            placement,
+            post_id: postId,
+            genre,
+            seconds,
+          }),
+          keepalive: true,
+        }).catch(() => {});
+      };
+
+      report('impression');
+
+      if (placement === 'bottom') {
+        const slot = document.querySelector(
+          `[data-cam-placement="${placement}"]`,
+        );
+
+        if (slot && 'IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              if (entries.some((entry) => entry.isIntersecting)) {
+                report('bottom_reach');
+                observer.disconnect();
+              }
+            },
+            { threshold: 0.2 },
+          );
+
+          observer.observe(slot);
+        }
+
+        [10, 30, 60].forEach((seconds) => {
+          window.setTimeout(() => report('time_reach', seconds), seconds * 1000);
+        });
+      }
+    </script>
+  )
+}
