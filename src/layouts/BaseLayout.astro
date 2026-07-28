@@ -77,12 +77,40 @@ const seo = createSeo({
         </div>
 
         <nav
-          class="overflow-x-auto border-t border-jiji-border"
+          class="overflow-x-auto border-t border-jiji-border md:overflow-visible"
           aria-label="メインナビゲーション"
         >
           <ul class="flex min-w-max gap-7 py-4 text-xs tracking-[0.14em] uppercase">
             <li><a class="no-underline hover:opacity-50" href="/">Home</a></li>
-            <li><a class="no-underline hover:opacity-50" href="/category/shoes/">Wardrobe</a></li>
+            <li>
+              <details class="wardrobe-menu">
+                <summary class="flex cursor-pointer list-none items-center gap-1.5 hover:opacity-50 [&::-webkit-details-marker]:hidden">
+                  Wardrobe
+                  <svg
+                    class="h-3 w-3 transition-transform duration-200"
+                    viewBox="0 0 12 12"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m2 4 4 4 4-4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </summary>
+
+                <ul class="wardrobe-submenu">
+                  <li><a href="/category/jackets_suits/">Jackets &amp; Suits</a></li>
+                  <li><a href="/category/ties/">Ties</a></li>
+                  <li><a href="/category/coats/">Coats</a></li>
+                  <li><a href="/category/shoes/">Shoes</a></li>
+                  <li><a href="/category/shirts/">Shirts</a></li>
+                </ul>
+              </details>
+            </li>
             <li><a class="no-underline hover:opacity-50" href="/category/daily-style/">Daily Style</a></li>
             <li><a class="no-underline hover:opacity-50" href="/category/classic-menswear/">Classic Menswear</a></li>
             <li><a class="no-underline hover:opacity-50" href="/about/">About</a></li>
@@ -102,4 +130,64 @@ const seo = createSeo({
       </div>
     </footer>
   </body>
+  <style>
+    .wardrobe-menu {
+      position: relative;
+    }
+
+    .wardrobe-menu > summary {
+      align-items: center;
+      min-height: 1.25rem;
+    }
+
+    .wardrobe-submenu {
+      position: absolute;
+      z-index: 20;
+      top: calc(100% + 1rem);
+      left: -1.25rem;
+      display: none;
+      width: 15rem;
+      padding: 0.75rem 1.25rem;
+      background: #fff;
+      border: 1px solid var(--color-jiji-border);
+      box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 0.08);
+    }
+
+    .wardrobe-menu:hover > .wardrobe-submenu,
+    .wardrobe-menu:focus-within > .wardrobe-submenu,
+    .wardrobe-menu[open] > .wardrobe-submenu {
+      display: block;
+    }
+
+    .wardrobe-menu[open] summary svg {
+      transform: rotate(180deg);
+    }
+
+    .wardrobe-submenu li + li {
+      border-top: 1px dashed #eadfdf;
+    }
+
+    .wardrobe-submenu a {
+      display: block;
+      padding: 1rem 0;
+      color: inherit;
+      font-weight: 600;
+      line-height: 1.25;
+      text-decoration: none;
+    }
+
+    .wardrobe-submenu a:hover,
+    .wardrobe-submenu a:focus-visible {
+      color: #cda2a2;
+    }
+
+    @media (max-width: 767px) {
+      .wardrobe-submenu {
+        position: fixed;
+        top: auto;
+        left: 1rem;
+        width: min(15rem, calc(100vw - 2rem));
+      }
+    }
+  </style>
 </html>
