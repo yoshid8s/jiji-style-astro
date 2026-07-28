@@ -1,0 +1,17 @@
+---
+interface Props {
+  cas?: readonly string[];
+}
+
+const { cas = [] } = Astro.props;
+
+const issuedCas = cas.filter((value) =>
+  /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(value),
+);
+---
+
+{
+  issuedCas.length > 0 && (
+    <script type="application/cas+json" set:html={JSON.stringify(issuedCas)} />
+  )
+}
