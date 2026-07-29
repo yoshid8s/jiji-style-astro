@@ -24,7 +24,7 @@
 
 | Secret | 値 |
 | --- | --- |
-| `JIJI_STYLE_ASTRO` | さくらサーバーのFTPパスワード |
+| `SAKURA_HOST` | `yh-inc.sakura.ne.jp` |\n| `SAKURA_USERNAME` | `yh-inc` |\n| `SAKURA_PASSWORD` | さくらサーバーのFTPパスワード |\n| `SAKURA_ASTRO_DEPLOY_PATH` | `/home/yh-inc/www/wp_jiji/` |
 
 FTPホスト、ユーザー名、配置先はワークフロー内に固定しています。
 
