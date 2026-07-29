@@ -15,22 +15,28 @@
   </IfModule>
   ```
 
-- アップロードは削除同期を使いません。WordPressの `wp-admin`、`wp-content`、`wp-includes`、既存のPHPファイルは削除されません。
+- FTPデプロイの対象は `dist/` だけです。WordPressの `wp-admin`、`wp-content`、`wp-includes`、既存のPHPファイルは対象外です。
+- 初回にサーバー上のファイルを一括削除する設定（`dangerous-clean-slate`）は無効にしています。
 
-## GitHub Secrets
+## GitHub Secret
 
-リポジトリの **Settings → Secrets and variables → Actions → New repository secret** で、次の値を登録します。
+リポジトリの **Settings → Secrets and variables → Actions → New repository secret** で、次を登録します。
 
 | Secret | 値 |
 | --- | --- |
-| `SAKURA_SSH_HOST` | さくらサーバーのホスト名（例: `yh-inc.sakura.ne.jp`） |
-| `SAKURA_SSH_PORT` | `22` |
-| `SAKURA_SSH_USERNAME` | さくらサーバーのSSH/SFTPユーザー名 |
-| `SAKURA_SSH_PASSWORD` | SSH/SFTPパスワード |
-| `SAKURA_ASTRO_DEPLOY_PATH` | `/home/yh-inc/www/wp_jiji` |
-| `SAKURA_SSH_FINGERPRINT` | 任意。SSHホスト鍵のSHA256フィンガープリント |
+| `SAKURA_HOST` | `yh-inc.sakura.ne.jp` |\n| `SAKURA_USERNAME` | `yh-inc` |\n| `SAKURA_PASSWORD` | さくらサーバーのFTPパスワード |\n| `SAKURA_ASTRO_DEPLOY_PATH` | `/home/yh-inc/www/wp_jiji/` |
 
-パスワードはこのリポジトリやActionsログに書かれません。
+FTPホスト、ユーザー名、配置先はワークフロー内に固定しています。
+
+| 項目 | 値 |
+| --- | --- |
+| FTPサーバー | `ftp://yh-inc.sakura.ne.jp` |
+| ユーザー名 | `yh-inc` |
+| 配置先 | `/home/yh-inc/www/wp_jiji/` |
+
+パスワードはGitHubのリポジトリやActionsログに書かれません。
+
+> FTPは通信を暗号化しない方式です。現在のさくらサーバー接続に合わせて使用しますが、将来はFTPSまたはSSH鍵方式へ移行することを推奨します。
 
 ## 実行手順
 
