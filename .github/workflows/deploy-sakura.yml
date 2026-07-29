@@ -1,0 +1,60 @@
+name: Deploy Astro site to Sakura
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Set to true to deploy the current main branch to Sakura."
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-astro-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy static site
+    if: inputs.deploy
+    runs-on: ubuntu-latest
+    env:
+      WORDPRESS_API_URL: https://style.yh-inc.jp/wp-json/wp/v2
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Astro
+        run: pnpm build
+
+      - name: Upload static files to Sakura
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.SAKURA_SSH_HOST }}
+          port: ${{ secrets.SAKURA_SSH_PORT }}
+          username: ${{ secrets.SAKURA_SSH_USERNAME }}
+          password: ${{ secrets.SAKURA_SSH_PASSWORD }}
+          fingerprint: ${{ secrets.SAKURA_SSH_FINGERPRINT }}
+          source: "dist/*"
+          target: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
+          strip_components: 1
+          overwrite: true
+          rm: false
