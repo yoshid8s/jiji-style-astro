@@ -48,9 +48,9 @@ jobs:
       - name: Upload static files to Sakura via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ftp://yh-inc.sakura.ne.jp
-          username: yh-inc
-          password: ${{ secrets.JIJI_STYLE_ASTRO }}
+          server: ftp://${{ secrets.SAKURA_HOST }}
+          username: ${{ secrets.SAKURA_USERNAME }}
+          password: ${{ secrets.SAKURA_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /home/yh-inc/www/wp_jiji/
+          server-dir: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
           dangerous-clean-slate: false
