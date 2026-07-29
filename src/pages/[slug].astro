@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { Image } from 'astro:assets';
+import ContextAd from '../components/ContextAd.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ContentAttestation from '../components/ContentAttestation.astro';
@@ -12,6 +13,10 @@ import {
   getPostCategories,
   type WordPressPost,
 } from '../lib/wordpress';
+import {
+  getContextAd,
+  type ContextAdPlacement,
+} from '../lib/context-ads';
 import { stripHtml } from '../lib/text';
 import { getArticleContentAttestations } from '../lib/content-attestations';
 
@@ -70,6 +75,44 @@ const canonical = siteUrl ? `${siteUrl}/${decodedSlug}/` : undefined;
 const imageWidth = featuredImage?.media_details?.width ?? 1600;
 const imageHeight = featuredImage?.media_details?.height ?? 1200;
 const issuedCas = getArticleContentAttestations(decodedSlug);
+
+type ArticlePart =
+  | { type: 'html'; value: string }
+  | { type: 'ad'; placement: ContextAdPlacement };
+
+function splitArticleContent(content: string): ArticlePart[] {
+  const withMarkers = content
+    .replace(
+      /<div\b[^>]*\bclass=(["'])[^"']*\bcam-context-ad-slot\b[^"']*\bcam-context-ad-(top|middle|bottom)\b[^"']*\1[^>]*>[\s\S]*?<\/div>\s*<\/div>/gi,
+      (_match, _quote, placement: ContextAdPlacement) =>
+        `<!-- cam-context-ad:${placement} -->`,
+    )
+    .replace(
+      /<span\b[^>]*\bclass=(["'])[^"']*\bcam-context-(?:bottom-reach|time)-marker\b[^"']*\1[^>]*>[\s\S]*?<\/span>/gi,
+      '',
+    );
+
+  return withMarkers
+    .split(/(<!--\s*cam-context-ad:(top|middle|bottom)\s*-->)/i)
+    .filter(Boolean)
+    .map((part) => {
+      const match = part.match(
+        /^<!--\s*cam-context-ad:(top|middle|bottom)\s*-->$/i,
+      );
+
+      return match
+        ? { type: 'ad' as const, placement: match[1] as ContextAdPlacement }
+        : { type: 'html' as const, value: part };
+    });
+}
+
+const articleParts = splitArticleContent(post.content.rendered);
+const [topAd, middleAd, bottomAd] = await Promise.all(
+  (['top', 'middle', 'bottom'] as const).map((placement) =>
+    getContextAd(post.id, placement),
+  ),
+);
+const contextAds = { top: topAd, middle: middleAd, bottom: bottomAd };
 ---
 
 <BaseLayout
@@ -148,11 +191,22 @@ const issuedCas = getArticleContentAttestations(decodedSlug);
         )
       }
 
-      <div
-        id="article-content"
-        class="wp-content text-[1rem] leading-8 text-neutral-800 md:text-[1.05rem]"
-        set:html={post.content.rendered}
-      />
+      <div id="article-content">
+        {articleParts.map((part) =>
+          part.type === 'ad' ? (
+            <ContextAd
+              ad={contextAds[part.placement]}
+              placement={part.placement}
+              postId={post.id}
+            />
+          ) : (
+            <div
+              class="wp-content text-[1rem] leading-8 text-neutral-800 md:text-[1.05rem]"
+              set:html={part.value}
+            />
+          ),
+        )}
+      </div>
 
       <ContentAttestation cas={issuedCas} />
     </div>
