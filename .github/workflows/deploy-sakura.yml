@@ -45,16 +45,12 @@ jobs:
       - name: Build Astro
         run: pnpm build
 
-      - name: Upload static files to Sakura
-        uses: appleboy/scp-action@v1
+      - name: Upload static files to Sakura via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          host: ${{ secrets.SAKURA_SSH_HOST }}
-          port: ${{ secrets.SAKURA_SSH_PORT }}
-          username: ${{ secrets.SAKURA_SSH_USERNAME }}
-          password: ${{ secrets.SAKURA_SSH_PASSWORD }}
-          fingerprint: ${{ secrets.SAKURA_SSH_FINGERPRINT }}
-          source: "dist/*"
-          target: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
-          strip_components: 1
-          overwrite: true
-          rm: false
+          server: ftp://yh-inc.sakura.ne.jp
+          username: yh-inc
+          password: ${{ secrets.JIJI_STYLE_ASTRO }}
+          local-dir: ./dist/
+          server-dir: /home/yh-inc/www/wp_jiji/
+          dangerous-clean-slate: false
