@@ -55,4 +55,3 @@ jobs:
           source: "dist/**"
           target: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
           strip_components: 1
-          overwrite: true
