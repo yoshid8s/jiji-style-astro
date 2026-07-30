@@ -93,7 +93,7 @@ function splitArticleContent(content: string): ArticlePart[] {
     );
 
   return withMarkers
-    .split(/(<!--\s*cam-context-ad:(top|middle|bottom)\s*-->)/i)
+    .split(/(<!--\s*cam-context-ad:(?:top|middle|bottom)\s*-->)/i)
     .filter(Boolean)
     .map((part) => {
       const match = part.match(
