@@ -91,7 +91,7 @@ if (!targetMatch?.[1]) {
 }
 
 const targetElements = [...targetMatch[1].matchAll(
-  /<(p|h[1-6]|blockquote|figcaption|pre)\\b[^>]*\\bid=(['"])(op-body-[^'"]+)\\2[^>]*>[\\s\\S]*?<\\/\\1>/gi,
+  /<(p|h[1-6]|blockquote|figcaption|pre)\b[^>]*\bid=(['"])(op-body-[^'"]+)\2[^>]*>[\s\S]*?<\/\1>/gi,
 )].map((match) => ({
   content: match[0],
   cssSelector: `#${match[3]}`,
