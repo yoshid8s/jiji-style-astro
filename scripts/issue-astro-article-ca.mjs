@@ -90,7 +90,16 @@ if (!targetMatch?.[1]) {
   throw new Error(`CA target markers were not found in ${articlePath}`);
 }
 
-const targetHtml = targetMatch[1].trim();
+const targetElements = [...targetMatch[1].matchAll(
+  /<(p|h[1-6]|blockquote|figcaption|pre)\\b[^>]*\\bid=(['"])(op-body-[^'"]+)\\2[^>]*>[\\s\\S]*?<\\/\\1>/gi,
+)].map((match) => ({
+  content: match[0],
+  cssSelector: `#${match[3]}`,
+}));
+
+if (targetElements.length === 0) {
+  throw new Error(`No stable CA target elements were found in ${articlePath}`);
+}
 const manifestPath = path.join(
   repositoryRoot,
   'src',
@@ -134,13 +143,11 @@ const attestation = {
     ...(getCategoryName(post) ? { genre: getCategoryName(post) } : {}),
   },
   allowedUrl: [pageUrl],
-  target: [
-    {
-      type: 'TextTargetIntegrity',
-      content: targetHtml,
-      cssSelector: '#article-content',
-    },
-  ],
+  target: targetElements.map(({ content, cssSelector }) => ({
+    type: 'TextTargetIntegrity',
+    content,
+    cssSelector,
+  })),
 };
 
 const issueResponse = await fetch(new URL('/ca', serverUrl), {
