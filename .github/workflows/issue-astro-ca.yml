@@ -1,0 +1,84 @@
+name: Issue Astro article CA
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: "Decoded WordPress article slug to attest, for example ジジイのcabana-shirt-style"
+        required: true
+        type: string
+      deploy:
+        description: "Set to true to issue, commit, and deploy the CA."
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: issue-astro-ca-${{ inputs.slug }}
+  cancel-in-progress: false
+
+jobs:
+  issue:
+    name: Issue and deploy article CA
+    if: inputs.deploy
+    runs-on: ubuntu-latest
+    env:
+      WORDPRESS_API_URL: https://style.yh-inc.jp/wp-json/wp/v2
+      CA_SERVER_URL: https://playground.originator-profile.org
+      CA_ISSUER: dns:example.com
+      CA_ARTICLE_SLUG: ${{ inputs.slug }}
+      CA_SERVER_AUTH: ${{ secrets.CA_SERVER_AUTH }}
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Astro without the new CA
+        run: pnpm build
+
+      - name: Issue CA for the final Astro article HTML
+        run: node scripts/issue-astro-article-ca.mjs
+
+      - name: Commit issued CA files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/cas src/data/content-attestations.json
+          git commit -m "chore: issue CA for ${{ inputs.slug }}"
+          git push
+
+      - name: Rebuild Astro with the external CAS reference
+        run: pnpm build
+
+      - name: Install SSH password helper
+        run: sudo apt-get update && sudo apt-get install --yes sshpass
+
+      - name: Synchronize CA and article files to Sakura
+        env:
+          SSHPASS: ${{ secrets.SAKURA_PASSWORD }}
+          SAKURA_HOST: ${{ secrets.SAKURA_HOST }}
+          SAKURA_SSH_PORT: ${{ secrets.SAKURA_SSH_PORT }}
+          SAKURA_USERNAME: ${{ secrets.SAKURA_USERNAME }}
+          SAKURA_ASTRO_DEPLOY_PATH: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
+        run: >
+          sshpass -e rsync -az --checksum --no-times --itemize-changes
+          -e "ssh -p $SAKURA_SSH_PORT -o StrictHostKeyChecking=accept-new"
+          dist/
+          "$SAKURA_USERNAME@$SAKURA_HOST:$SAKURA_ASTRO_DEPLOY_PATH/"
