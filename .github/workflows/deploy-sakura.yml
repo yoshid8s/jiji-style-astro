@@ -56,7 +56,7 @@ jobs:
           SAKURA_USERNAME: ${{ secrets.SAKURA_USERNAME }}
           SAKURA_ASTRO_DEPLOY_PATH: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
         run: >
-          sshpass -e rsync -az --checksum --itemize-changes
+          sshpass -e rsync -az --checksum --no-times --itemize-changes
           -e "ssh -p $SAKURA_SSH_PORT -o StrictHostKeyChecking=accept-new"
           dist/
           "$SAKURA_USERNAME@$SAKURA_HOST:$SAKURA_ASTRO_DEPLOY_PATH/"
