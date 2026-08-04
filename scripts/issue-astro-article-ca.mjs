@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -99,11 +100,11 @@ const manifestPath = path.join(
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
 const casUrl = `/cas/${post.id}_cas.json`;
 const existingCasPath = path.join(repositoryRoot, 'public', casUrl);
-let existingCaId;
+let existingCaId = manifest[slug]?.caId;
 
 try {
   const [existingJwt] = JSON.parse(await readFile(existingCasPath, 'utf8'));
-  existingCaId = decodeJwtPayload(existingJwt)?.credentialSubject?.id;
+  existingCaId ??= decodeJwtPayload(existingJwt)?.credentialSubject?.id;
 } catch {
   // This article is being issued for the first time.
 }
@@ -111,7 +112,7 @@ try {
 const postDate = post.date_gmt || post.date;
 const modifiedDate = post.modified_gmt || post.modified || post.date_gmt || post.date;
 const pageUrl = `https://style.yh-inc.jp/${slug}/`;
-const caId = `https://style.yh-inc.jp${casUrl}`;
+const caId = existingCaId || `urn:uuid:${randomUUID()}`;
 const attestation = {
   '@context': [
     'https://www.w3.org/ns/credentials/v2',
@@ -119,11 +120,10 @@ const attestation = {
     'https://originator-profile.org/ns/cip/v1',
     { '@language': 'ja-JP' },
   ],
-  id: caId,
   type: ['VerifiableCredential', 'ContentAttestation'],
   issuer,
   credentialSubject: {
-    ...(existingCaId ? { id: existingCaId } : {}),
+    id: caId,
     type: 'Article',
     headline: stripHtml(post.title.rendered),
     description: stripHtml(post.excerpt.rendered),
@@ -178,6 +178,7 @@ await writeFile(existingCasPath, `${JSON.stringify([issuedJwt], null, 2)}\n`);
 manifest[slug] = {
   postId: post.id,
   casUrl,
+  caId,
   issuedAt: new Date().toISOString(),
 };
 
