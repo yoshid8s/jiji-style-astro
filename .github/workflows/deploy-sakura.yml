@@ -45,13 +45,18 @@ jobs:
       - name: Build Astro
         run: pnpm build
 
-      - name: Upload static files to Sakura via SSH
-        uses: appleboy/scp-action@v1
-        with:
-          host: ${{ secrets.SAKURA_HOST }}
-          port: ${{ secrets.SAKURA_SSH_PORT }}
-          username: ${{ secrets.SAKURA_USERNAME }}
-          password: ${{ secrets.SAKURA_PASSWORD }}
-          source: "dist/**"
-          target: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
-          strip_components: 1
+      - name: Install SSH password helper
+        run: sudo apt-get update && sudo apt-get install --yes sshpass
+
+      - name: Synchronize changed static files to Sakura
+        env:
+          SSHPASS: ${{ secrets.SAKURA_PASSWORD }}
+          SAKURA_HOST: ${{ secrets.SAKURA_HOST }}
+          SAKURA_SSH_PORT: ${{ secrets.SAKURA_SSH_PORT }}
+          SAKURA_USERNAME: ${{ secrets.SAKURA_USERNAME }}
+          SAKURA_ASTRO_DEPLOY_PATH: ${{ secrets.SAKURA_ASTRO_DEPLOY_PATH }}
+        run: >
+          sshpass -e rsync -az --checksum --itemize-changes
+          -e "ssh -p $SAKURA_SSH_PORT -o StrictHostKeyChecking=accept-new"
+          dist/
+          "$SAKURA_USERNAME@$SAKURA_HOST:$SAKURA_ASTRO_DEPLOY_PATH/"
