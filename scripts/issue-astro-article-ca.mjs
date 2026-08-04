@@ -111,6 +111,7 @@ try {
 const postDate = post.date_gmt || post.date;
 const modifiedDate = post.modified_gmt || post.modified || post.date_gmt || post.date;
 const pageUrl = `https://style.yh-inc.jp/${slug}/`;
+const caId = `https://style.yh-inc.jp${casUrl}`;
 const attestation = {
   '@context': [
     'https://www.w3.org/ns/credentials/v2',
@@ -118,6 +119,7 @@ const attestation = {
     'https://originator-profile.org/ns/cip/v1',
     { '@language': 'ja-JP' },
   ],
+  id: caId,
   type: ['VerifiableCredential', 'ContentAttestation'],
   issuer,
   credentialSubject: {
