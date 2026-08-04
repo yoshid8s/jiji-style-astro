@@ -6,7 +6,7 @@ interface Props {
 const { casUrls = [] } = Astro.props;
 
 const externalCasUrls = casUrls.filter((value) =>
-  /^\/cas\/[0-9]+_cas\.json$/.test(value),
+  /^\/cas\/[0-9]+_cas\.json(?:\?[^#]+)?$/.test(value),
 );
 ---
 
