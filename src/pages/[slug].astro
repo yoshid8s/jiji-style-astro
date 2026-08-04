@@ -74,7 +74,7 @@ const siteUrl = Astro.site?.toString().replace(/\/$/, '');
 const canonical = siteUrl ? `${siteUrl}/${decodedSlug}/` : undefined;
 const imageWidth = featuredImage?.media_details?.width ?? 1600;
 const imageHeight = featuredImage?.media_details?.height ?? 1200;
-const issuedCas = getArticleContentAttestations(decodedSlug);
+const issuedCaUrls = getArticleContentAttestations(decodedSlug);
 
 type ArticlePart =
   | { type: 'html'; value: string }
@@ -191,6 +191,7 @@ const contextAds = { top: topAd, middle: middleAd, bottom: bottomAd };
         )
       }
 
+      <!-- ca-target:start -->
       <div id="article-content">
         {articleParts.map((part) =>
           part.type === 'ad' ? (
@@ -207,8 +208,9 @@ const contextAds = { top: topAd, middle: middleAd, bottom: bottomAd };
           ),
         )}
       </div>
+      <!-- ca-target:end -->
 
-      <ContentAttestation cas={issuedCas} />
+      <ContentAttestation casUrls={issuedCaUrls} />
     </div>
   </article>
 
