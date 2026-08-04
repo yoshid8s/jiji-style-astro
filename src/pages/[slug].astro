@@ -140,6 +140,11 @@ function addStableTargetIds(content: string): string {
       return `<${tag}${attributes} id="op-body-${id}">${innerHtml}</${tag}>`;
     },
   );
+
+  return contentWithTargetIds.replace(
+    /<!-- ca-dynamic-embed:(\\d+) -->/g,
+    (_placeholder, index) => protectedEmbeds[Number(index)] ?? '',
+  );
 }
 
 const articleParts = splitArticleContent(post.content.rendered).map((part) =>
