@@ -2,6 +2,7 @@ import issuedArticleCas from '../data/content-attestations.json';
 
 interface IssuedArticleCa {
   casUrl: string;
+  issuedAt: string;
 }
 
 const articleContentAttestations = issuedArticleCas as Record<
@@ -14,5 +15,7 @@ export function getArticleContentAttestations(
 ): readonly string[] {
   const issuedCa = articleContentAttestations[slug];
 
-  return issuedCa ? [issuedCa.casUrl] : [];
+  return issuedCa
+    ? [`${issuedCa.casUrl}?v=${encodeURIComponent(issuedCa.issuedAt)}`]
+    : [];
 }
