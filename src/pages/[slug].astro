@@ -121,7 +121,10 @@ function normalizeTargetText(value: string): string {
     .trim();
 }
 
-function addStableTargetIds(content: string): string {
+function addStableTargetIds(
+  content: string,
+  idOccurrences: Map<string, number>,
+): string {
   const protectedEmbeds: string[] = [];
   const contentWithoutDynamicEmbeds = content.replace(
     /<blockquote\b[^>]*(?:\bclass=(['"])[^'"]*\binstagram-media\b[^'"]*\1|\bdata-instgrm-[^\s=]+)[^>]*>[\s\S]*?<\/blockquote>/gi,
@@ -145,7 +148,10 @@ function addStableTargetIds(content: string): string {
         return element;
       }
 
-      const id = createHash('sha1').update(text).digest('hex').slice(0, 12);
+      const baseId = createHash('sha1').update(text).digest('hex').slice(0, 12);
+      const occurrence = idOccurrences.get(baseId) ?? 0;
+      idOccurrences.set(baseId, occurrence + 1);
+      const id = occurrence === 0 ? baseId : `${baseId}-${occurrence + 1}`;
 
       return `<${tag}${attributes} id="op-body-${id}">${innerHtml}</${tag}>`;
     },
@@ -157,9 +163,13 @@ function addStableTargetIds(content: string): string {
   );
 }
 
+const targetIdOccurrences = new Map<string, number>();
 const articleParts = splitArticleContent(post.content.rendered).map((part) =>
   part.type === 'html'
-    ? { ...part, value: addStableTargetIds(part.value) }
+    ? {
+        ...part,
+        value: addStableTargetIds(part.value, targetIdOccurrences),
+      }
     : part,
 );
 const [topAd, middleAd, bottomAd] = await Promise.all(
