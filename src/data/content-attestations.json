@@ -3,6 +3,8 @@
     "postId": 3623,
     "casUrl": "/astro-cas/3623_cas.json",
     "caId": "urn:uuid:2a071240-f495-42fc-b0c4-7ab5195726b2",
-    "issuedAt": "2026-08-05T02:09:31.475Z"
+    "issuedAt": "2026-08-05T04:09:18.855Z",
+    "adsCasUrl": "/astro-cas/3623_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T04:09:18.855Z"
   }
 }
