@@ -30,5 +30,1025 @@
     "issuedAt": "2026-08-05T07:22:41.314Z",
     "adsCasUrl": "/astro-cas/3575_ads_cas.json",
     "adsIssuedAt": "2026-08-05T07:22:41.314Z"
+  },
+  "summer-suit-style-with-polo-shirt": {
+    "postId": 3566,
+    "casUrl": "/astro-cas/3566_cas.json",
+    "caId": "urn:uuid:edc6762c-55ab-474f-b043-aa447e72a33c",
+    "issuedAt": "2026-08-05T07:45:29.287Z",
+    "adsCasUrl": "/astro-cas/3566_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:45:29.287Z"
+  },
+  "skipper-polo-shirt-for-summer-look": {
+    "postId": 3554,
+    "casUrl": "/astro-cas/3554_cas.json",
+    "caId": "urn:uuid:4e736d4d-6f26-4f3d-87aa-1471bc3bc495",
+    "issuedAt": "2026-08-05T07:45:31.408Z"
+  },
+  "summer-white-shirt-style-with-swedish-military-trousers": {
+    "postId": 3543,
+    "casUrl": "/astro-cas/3543_cas.json",
+    "caId": "urn:uuid:e00c47da-fb77-420f-8880-a49525ac7fe7",
+    "issuedAt": "2026-08-05T07:45:35.498Z",
+    "adsCasUrl": "/astro-cas/3543_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:45:35.498Z"
+  },
+  "what-exactly-is-sprezzatura-a-suit-style-that-looks-relaxed-and-natural": {
+    "postId": 3409,
+    "casUrl": "/astro-cas/3409_cas.json",
+    "caId": "urn:uuid:f06548ae-5cb6-4f46-8313-6e609de1bc46",
+    "issuedAt": "2026-08-05T07:45:39.184Z",
+    "adsCasUrl": "/astro-cas/3409_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:45:39.184Z"
+  },
+  "memories-of-the-chanel-11-12-bag-and-the-changing-brand-position-of-chanel": {
+    "postId": 3522,
+    "casUrl": "/astro-cas/3522_cas.json",
+    "caId": "urn:uuid:43b08212-dbf9-4b7e-8bca-7c9e1fd81f93",
+    "issuedAt": "2026-08-05T07:45:41.029Z"
+  },
+  "classic-knitwear-that-gentlemen-should-choose-svevo": {
+    "postId": 3511,
+    "casUrl": "/astro-cas/3511_cas.json",
+    "caId": "urn:uuid:16e418f5-704b-4f07-908a-5aa82cf972fa",
+    "issuedAt": "2026-08-05T07:45:45.981Z",
+    "adsCasUrl": "/astro-cas/3511_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:45:45.981Z"
+  },
+  "ジジイのsummer-relaxed-aloha-shirt-style": {
+    "postId": 1099,
+    "casUrl": "/astro-cas/1099_cas.json",
+    "caId": "urn:uuid:91a2f617-a78b-463d-987e-9266d53a8b19",
+    "issuedAt": "2026-08-05T07:45:47.950Z"
+  },
+  "ジジイのoff-white-jacket-style-with-dark-green-trousers": {
+    "postId": 339,
+    "casUrl": "/astro-cas/339_cas.json",
+    "caId": "urn:uuid:42741597-b2a6-49c2-9bc8-e6a1ab83a3e5",
+    "issuedAt": "2026-08-05T07:45:52.437Z",
+    "adsCasUrl": "/astro-cas/339_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:45:52.437Z"
+  },
+  "classic-navy-suit-style": {
+    "postId": 688,
+    "casUrl": "/astro-cas/688_cas.json",
+    "caId": "urn:uuid:bf280230-ddde-49c4-a61b-ffa394a4f3e6",
+    "issuedAt": "2026-08-05T07:45:54.682Z"
+  },
+  "ジジイのblue-cotton-suit-style": {
+    "postId": 705,
+    "casUrl": "/astro-cas/705_cas.json",
+    "caId": "urn:uuid:a008ebf7-8f45-4950-b37d-4128abbc7800",
+    "issuedAt": "2026-08-05T07:45:56.515Z"
+  },
+  "ジジイのsolaro-suit-style-liverano-liverano": {
+    "postId": 581,
+    "casUrl": "/astro-cas/581_cas.json",
+    "caId": "urn:uuid:cf16db31-21a0-4907-a307-133a828aa57c",
+    "issuedAt": "2026-08-05T07:46:00.687Z",
+    "adsCasUrl": "/astro-cas/581_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:00.687Z"
+  },
+  "ジジイのseersucker-suit-style": {
+    "postId": 670,
+    "casUrl": "/astro-cas/670_cas.json",
+    "caId": "urn:uuid:bd5484ec-33ea-428b-9681-35d13b8c93f5",
+    "issuedAt": "2026-08-05T07:46:02.679Z"
+  },
+  "ジジイのkhaki-suit-style-with-light-brown-shoes": {
+    "postId": 933,
+    "casUrl": "/astro-cas/933_cas.json",
+    "caId": "urn:uuid:8c2e1b0f-f01b-4192-b3a7-ef80f29fc61d",
+    "issuedAt": "2026-08-05T07:46:06.820Z",
+    "adsCasUrl": "/astro-cas/933_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:06.820Z"
+  },
+  "ジジイのsummer-style-madison-blues-ムッシュシャツ": {
+    "postId": 882,
+    "casUrl": "/astro-cas/882_cas.json",
+    "caId": "urn:uuid:0e5bfc4b-f270-40a3-a108-02b840b3c23d",
+    "issuedAt": "2026-08-05T07:46:10.531Z",
+    "adsCasUrl": "/astro-cas/882_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:10.531Z"
+  },
+  "ジジイのbeige-linen-suit-style": {
+    "postId": 661,
+    "casUrl": "/astro-cas/661_cas.json",
+    "caId": "urn:uuid:62da7dd4-f7c3-4d8e-b2a1-d37fd5e17353",
+    "issuedAt": "2026-08-05T07:46:12.309Z"
+  },
+  "ジジイのsummer-flap-pocket-shirt-style-with-classic-shorts": {
+    "postId": 1195,
+    "casUrl": "/astro-cas/1195_cas.json",
+    "caId": "urn:uuid:1960debf-82d8-4ed4-b159-b5e15e217860",
+    "issuedAt": "2026-08-05T07:46:14.014Z"
+  },
+  "summer-off-white-suit-attire": {
+    "postId": 1222,
+    "casUrl": "/astro-cas/1222_cas.json",
+    "caId": "urn:uuid:b0b1d47f-77ec-4d66-9746-a7febbd7c409",
+    "issuedAt": "2026-08-05T07:46:17.595Z",
+    "adsCasUrl": "/astro-cas/1222_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:17.595Z"
+  },
+  "summer-style-featuring-a-white-shirt-and-gray-trousers": {
+    "postId": 1233,
+    "casUrl": "/astro-cas/1233_cas.json",
+    "caId": "urn:uuid:9eec7142-6c4e-403d-bdbc-fa989e31bb4f",
+    "issuedAt": "2026-08-05T07:46:21.936Z",
+    "adsCasUrl": "/astro-cas/1233_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:21.936Z"
+  },
+  "what-bottoms-would-you-pair-with-a-beige-jacket-in-early-summer": {
+    "postId": 3386,
+    "casUrl": "/astro-cas/3386_cas.json",
+    "caId": "urn:uuid:734b1408-a0ce-409e-9db4-292013e61e7c",
+    "issuedAt": "2026-08-05T07:46:25.956Z",
+    "adsCasUrl": "/astro-cas/3386_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:25.956Z"
+  },
+  "tindaro-de-lucaご本人のグレイスーツ": {
+    "postId": 743,
+    "casUrl": "/astro-cas/743_cas.json",
+    "caId": "urn:uuid:7c897324-3421-489f-8662-39f797d977c6",
+    "issuedAt": "2026-08-05T07:46:27.931Z"
+  },
+  "how-does-my-10-year-old-olive-green-cotton-suit-look": {
+    "postId": 3371,
+    "casUrl": "/astro-cas/3371_cas.json",
+    "caId": "urn:uuid:3f8ac676-0747-4d83-b9da-dc088a317e0f",
+    "issuedAt": "2026-08-05T07:46:31.940Z",
+    "adsCasUrl": "/astro-cas/3371_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:31.940Z"
+  },
+  "ジジイのsports-shirt-style": {
+    "postId": 729,
+    "casUrl": "/astro-cas/729_cas.json",
+    "caId": "urn:uuid:d8604751-8d7a-4b17-904d-66f518b5d5e2",
+    "issuedAt": "2026-08-05T07:46:33.755Z"
+  },
+  "ジジイのnavy-pinstripe-suit-style": {
+    "postId": 718,
+    "casUrl": "/astro-cas/718_cas.json",
+    "caId": "urn:uuid:9654fee2-25ce-44cc-9a2f-bbb1489030ff",
+    "issuedAt": "2026-08-05T07:46:35.566Z"
+  },
+  "bel-difetto-beautiful-imperfections": {
+    "postId": 2204,
+    "casUrl": "/astro-cas/2204_cas.json",
+    "caId": "urn:uuid:fdf173ad-b5ee-4449-b994-cefb07e612d9",
+    "issuedAt": "2026-08-05T07:46:39.536Z",
+    "adsCasUrl": "/astro-cas/2204_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:39.536Z"
+  },
+  "ジジイのopinion-on-suit-style": {
+    "postId": 2132,
+    "casUrl": "/astro-cas/2132_cas.json",
+    "caId": "urn:uuid:52b3e7d8-af5b-4bd8-9cd9-80626d3b30ef",
+    "issuedAt": "2026-08-05T07:46:43.210Z",
+    "adsCasUrl": "/astro-cas/2132_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:43.210Z"
+  },
+  "ジジイのtimeless-leather-jacket": {
+    "postId": 2114,
+    "casUrl": "/astro-cas/2114_cas.json",
+    "caId": "urn:uuid:691f04b2-6e78-4817-b52e-8d1299443681",
+    "issuedAt": "2026-08-05T07:46:47.196Z",
+    "adsCasUrl": "/astro-cas/2114_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:47.196Z"
+  },
+  "ジジイのpolo-coat-style": {
+    "postId": 2078,
+    "casUrl": "/astro-cas/2078_cas.json",
+    "caId": "urn:uuid:f23f9d72-b647-4153-9b2e-7bc1b6b993f3",
+    "issuedAt": "2026-08-05T07:46:51.210Z",
+    "adsCasUrl": "/astro-cas/2078_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:51.210Z"
+  },
+  "アナトミカのdolman-jacket-made-with-donegal-tweed": {
+    "postId": 2059,
+    "casUrl": "/astro-cas/2059_cas.json",
+    "caId": "urn:uuid:98217c97-e99b-4602-9fa4-b66bf0526e5d",
+    "issuedAt": "2026-08-05T07:46:54.859Z",
+    "adsCasUrl": "/astro-cas/2059_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:54.859Z"
+  },
+  "ジジイのcashmere-coat": {
+    "postId": 1992,
+    "casUrl": "/astro-cas/1992_cas.json",
+    "caId": "urn:uuid:2ce8bc5a-0577-4b77-8046-2bee01ee6d96",
+    "issuedAt": "2026-08-05T07:46:58.140Z",
+    "adsCasUrl": "/astro-cas/1992_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:46:58.140Z"
+  },
+  "ジジイのshawl-collar-cardigan-style": {
+    "postId": 2029,
+    "casUrl": "/astro-cas/2029_cas.json",
+    "caId": "urn:uuid:3d8dc4c3-4708-4c0b-bbaf-89b744224e60",
+    "issuedAt": "2026-08-05T07:47:01.649Z",
+    "adsCasUrl": "/astro-cas/2029_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:01.649Z"
+  },
+  "ジジイのgrey-flannel-double-breasted-suit-from-cesare-attolini": {
+    "postId": 1978,
+    "casUrl": "/astro-cas/1978_cas.json",
+    "caId": "urn:uuid:6af181f3-c991-4513-a1a2-0632763a30c8",
+    "issuedAt": "2026-08-05T07:47:03.489Z"
+  },
+  "ジジイのbrown-coat-style": {
+    "postId": 1965,
+    "casUrl": "/astro-cas/1965_cas.json",
+    "caId": "urn:uuid:03eb8785-d764-471d-9708-9b7c78c01095",
+    "issuedAt": "2026-08-05T07:47:07.253Z",
+    "adsCasUrl": "/astro-cas/1965_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:07.253Z"
+  },
+  "ジジイのwinter-golf-style": {
+    "postId": 1958,
+    "casUrl": "/astro-cas/1958_cas.json",
+    "caId": "urn:uuid:12515a10-4573-4a36-958e-2ff1dad188bc",
+    "issuedAt": "2026-08-05T07:47:08.969Z"
+  },
+  "ジジイのwinter-chic-style-using-grey-khaki": {
+    "postId": 1945,
+    "casUrl": "/astro-cas/1945_cas.json",
+    "caId": "urn:uuid:64c60d68-af94-4c66-9a52-c9e69a4b68e0",
+    "issuedAt": "2026-08-05T07:47:13.303Z",
+    "adsCasUrl": "/astro-cas/1945_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:13.303Z"
+  },
+  "ジジイのtrench-coat-style-inspired-by-the-legendary-icon-alain-delon": {
+    "postId": 1924,
+    "casUrl": "/astro-cas/1924_cas.json",
+    "caId": "urn:uuid:c202d9d1-def4-491f-8cf4-2c50b5279748",
+    "issuedAt": "2026-08-05T07:47:15.062Z"
+  },
+  "ジジイのturtle-neck-sweater-style-from-proper-cloth": {
+    "postId": 1910,
+    "casUrl": "/astro-cas/1910_cas.json",
+    "caId": "urn:uuid:510dc91b-96a1-4e9e-b32f-8fb113dd5d07",
+    "issuedAt": "2026-08-05T07:47:16.898Z"
+  },
+  "ジジイの1940s-uk-vintage-flight-jacket-style": {
+    "postId": 1897,
+    "casUrl": "/astro-cas/1897_cas.json",
+    "caId": "urn:uuid:e9d64ef3-c51f-450b-b316-59490ef2f2a7",
+    "issuedAt": "2026-08-05T07:47:21.062Z",
+    "adsCasUrl": "/astro-cas/1897_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:21.062Z"
+  },
+  "ジジイのnavy-jacket-style-with-off-white-coat": {
+    "postId": 1891,
+    "casUrl": "/astro-cas/1891_cas.json",
+    "caId": "urn:uuid:191bd5c0-85f5-4279-8e31-f90a4f0ab168",
+    "issuedAt": "2026-08-05T07:47:24.851Z",
+    "adsCasUrl": "/astro-cas/1891_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:24.851Z"
+  },
+  "ジジイのautumn-coat-style-with-grenfell-raincoat": {
+    "postId": 1880,
+    "casUrl": "/astro-cas/1880_cas.json",
+    "caId": "urn:uuid:ab4c598d-3528-4168-8d25-e6ffdea535e1",
+    "issuedAt": "2026-08-05T07:47:28.513Z",
+    "adsCasUrl": "/astro-cas/1880_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:28.513Z"
+  },
+  "ジジイのprince-of-wales-check-style": {
+    "postId": 1867,
+    "casUrl": "/astro-cas/1867_cas.json",
+    "caId": "urn:uuid:3bd7059a-a592-48eb-9c87-43ebb26712f7",
+    "issuedAt": "2026-08-05T07:47:32.414Z",
+    "adsCasUrl": "/astro-cas/1867_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:32.414Z"
+  },
+  "ジジイのolive-green-pea-coat-style": {
+    "postId": 1851,
+    "casUrl": "/astro-cas/1851_cas.json",
+    "caId": "urn:uuid:6fc6be25-b416-45e2-ad7d-60916f0b66d0",
+    "issuedAt": "2026-08-05T07:47:34.202Z"
+  },
+  "ジジイのsuede-jacket-style": {
+    "postId": 1823,
+    "casUrl": "/astro-cas/1823_cas.json",
+    "caId": "urn:uuid:fdb4cd12-2cb9-4be1-809f-409dd6c44b65",
+    "issuedAt": "2026-08-05T07:47:38.390Z",
+    "adsCasUrl": "/astro-cas/1823_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:38.390Z"
+  },
+  "ジジイのautumn-khaki-coat-style": {
+    "postId": 1806,
+    "casUrl": "/astro-cas/1806_cas.json",
+    "caId": "urn:uuid:4122474d-2a21-44f8-9c2a-734f4055f8f3",
+    "issuedAt": "2026-08-05T07:47:42.308Z",
+    "adsCasUrl": "/astro-cas/1806_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:42.308Z"
+  },
+  "ジジイのgrey-pinstripe-suit-style": {
+    "postId": 1797,
+    "casUrl": "/astro-cas/1797_cas.json",
+    "caId": "urn:uuid:939d8603-75e1-4bbd-a285-2dc56851521c",
+    "issuedAt": "2026-08-05T07:47:44.073Z"
+  },
+  "ジジイのautumn-brown-suit-style-with-kiton": {
+    "postId": 1772,
+    "casUrl": "/astro-cas/1772_cas.json",
+    "caId": "urn:uuid:7722f209-14bc-4be2-9d72-6f573a604cfe",
+    "issuedAt": "2026-08-05T07:47:47.628Z",
+    "adsCasUrl": "/astro-cas/1772_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:47.628Z"
+  },
+  "ジジイのautumn-beige-jacket-style": {
+    "postId": 1744,
+    "casUrl": "/astro-cas/1744_cas.json",
+    "caId": "urn:uuid:5f93ba9f-32d1-4647-8f2a-4d05a29f90e0",
+    "issuedAt": "2026-08-05T07:47:49.434Z"
+  },
+  "ジジイのcashmere-brown-suit-style": {
+    "postId": 1737,
+    "casUrl": "/astro-cas/1737_cas.json",
+    "caId": "urn:uuid:081368ee-dcca-416e-b18d-db7dc5475e86",
+    "issuedAt": "2026-08-05T07:47:53.009Z",
+    "adsCasUrl": "/astro-cas/1737_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:47:53.009Z"
+  },
+  "ジジイのweekend-jacket-style": {
+    "postId": 1730,
+    "casUrl": "/astro-cas/1730_cas.json",
+    "caId": "urn:uuid:4c59184d-b9b3-4ab2-9188-3aa6d30488e7",
+    "issuedAt": "2026-08-05T07:47:54.782Z"
+  },
+  "ジジイのhoodie-jacket-style": {
+    "postId": 1722,
+    "casUrl": "/astro-cas/1722_cas.json",
+    "caId": "urn:uuid:249e93ec-6332-41f5-8b84-64f86bec68c3",
+    "issuedAt": "2026-08-05T07:47:56.522Z"
+  },
+  "ジジイのcar-coat-style-and-my-mercedes-benz": {
+    "postId": 1705,
+    "casUrl": "/astro-cas/1705_cas.json",
+    "caId": "urn:uuid:d09967ee-c930-44fd-8fa2-ce2e9700919f",
+    "issuedAt": "2026-08-05T07:47:58.262Z"
+  },
+  "ジジイのvintage-aquascutum-blazer": {
+    "postId": 1699,
+    "casUrl": "/astro-cas/1699_cas.json",
+    "caId": "urn:uuid:52649209-cc71-4ab0-9bd0-8758466d460f",
+    "issuedAt": "2026-08-05T07:47:59.969Z"
+  },
+  "ジジイのclassic-navy-suit-style": {
+    "postId": 1691,
+    "casUrl": "/astro-cas/1691_cas.json",
+    "caId": "urn:uuid:57242b04-96ad-4768-88d5-6a7670cdaed9",
+    "issuedAt": "2026-08-05T07:48:04.015Z",
+    "adsCasUrl": "/astro-cas/1691_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:48:04.015Z"
+  },
+  "ジジイのdenim-style-with-breton-striped-shirt": {
+    "postId": 1678,
+    "casUrl": "/astro-cas/1678_cas.json",
+    "caId": "urn:uuid:a862d40a-4ddb-4389-a1cb-c782b821c8cf",
+    "issuedAt": "2026-08-05T07:48:05.751Z"
+  },
+  "ジジイのdenim-style-with-white-shirt-and-knit-wear": {
+    "postId": 1661,
+    "casUrl": "/astro-cas/1661_cas.json",
+    "caId": "urn:uuid:e6a1e932-447f-4c85-9a8a-8bdc2dff5865",
+    "issuedAt": "2026-08-05T07:48:07.522Z"
+  },
+  "memories-of-paris-mouton-bomber-jacket": {
+    "postId": 1637,
+    "casUrl": "/astro-cas/1637_cas.json",
+    "caId": "urn:uuid:b87b5f80-ab88-422a-9eda-907c96afc714",
+    "issuedAt": "2026-08-05T07:48:09.424Z"
+  },
+  "ジジイのclassic-pea-coat-caban": {
+    "postId": 1619,
+    "casUrl": "/astro-cas/1619_cas.json",
+    "caId": "urn:uuid:e38d9788-ccd6-4ea7-b47f-a0cae9fdcef1",
+    "issuedAt": "2026-08-05T07:48:11.178Z"
+  },
+  "ジジイのautumn-check-jacket-style": {
+    "postId": 1607,
+    "casUrl": "/astro-cas/1607_cas.json",
+    "caId": "urn:uuid:1289d312-4cbc-4358-9599-e652ea419a57",
+    "issuedAt": "2026-08-05T07:48:12.933Z"
+  },
+  "ジジイのclassic-grey-suit-style": {
+    "postId": 1597,
+    "casUrl": "/astro-cas/1597_cas.json",
+    "caId": "urn:uuid:0349eeba-6921-4967-9e19-b73b62dc116d",
+    "issuedAt": "2026-08-05T07:48:14.761Z"
+  },
+  "ジジイのvintage-attolini-cashmere-jacket-style": {
+    "postId": 1586,
+    "casUrl": "/astro-cas/1586_cas.json",
+    "caId": "urn:uuid:d92566c8-8e44-4833-ab6c-2cf723acd24f",
+    "issuedAt": "2026-08-05T07:48:18.829Z",
+    "adsCasUrl": "/astro-cas/1586_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:48:18.829Z"
+  },
+  "ジジイのolive-green-safari-coat-style": {
+    "postId": 1577,
+    "casUrl": "/astro-cas/1577_cas.json",
+    "caId": "urn:uuid:9a3b7054-aa08-4b9e-94c9-d7a72c4e8014",
+    "issuedAt": "2026-08-05T07:48:20.591Z"
+  },
+  "ジジイのolive-green-coat-style": {
+    "postId": 1557,
+    "casUrl": "/astro-cas/1557_cas.json",
+    "caId": "urn:uuid:c108a8c0-d000-4a9a-96ac-36f728cabcc9",
+    "issuedAt": "2026-08-05T07:48:22.532Z"
+  },
+  "ジジイのclassic-shirt-and-leather-jacket-style": {
+    "postId": 1545,
+    "casUrl": "/astro-cas/1545_cas.json",
+    "caId": "urn:uuid:bebdfe3d-11c3-40bc-87ce-14d40dab2e92",
+    "issuedAt": "2026-08-05T07:48:24.418Z"
+  },
+  "ジジイのthree-piece-suit-style-with-beige-tie": {
+    "postId": 1535,
+    "casUrl": "/astro-cas/1535_cas.json",
+    "caId": "urn:uuid:1ed09a01-eb48-437b-b4fa-bff2ccf07ac0",
+    "issuedAt": "2026-08-05T07:48:28.404Z",
+    "adsCasUrl": "/astro-cas/1535_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:48:28.404Z"
+  },
+  "ジジイのolive-green-rain-coat-style": {
+    "postId": 1512,
+    "casUrl": "/astro-cas/1512_cas.json",
+    "caId": "urn:uuid:6315f7d1-0a91-4b5c-b4f7-f09b2069c54a",
+    "issuedAt": "2026-08-05T07:48:30.614Z"
+  },
+  "ジジイのgurkha-jacket-by-anatomica": {
+    "postId": 1501,
+    "casUrl": "/astro-cas/1501_cas.json",
+    "caId": "urn:uuid:79b8cd01-ec36-47a3-83d3-825fbe6b43a9",
+    "issuedAt": "2026-08-05T07:48:32.719Z"
+  },
+  "ジジイのyellow-harrington-jacket-style": {
+    "postId": 1494,
+    "casUrl": "/astro-cas/1494_cas.json",
+    "caId": "urn:uuid:48589ce2-61ca-44cd-ac8c-2d139a1beb32",
+    "issuedAt": "2026-08-05T07:48:34.609Z"
+  },
+  "ジジイのautumn-blue-jacket-style": {
+    "postId": 1337,
+    "casUrl": "/astro-cas/1337_cas.json",
+    "caId": "urn:uuid:9ab64aa4-04d3-4745-8eeb-276e20c6aa67",
+    "issuedAt": "2026-08-05T07:48:36.717Z"
+  },
+  "ジジイのdolman-jacket-off-white-color-style": {
+    "postId": 1468,
+    "casUrl": "/astro-cas/1468_cas.json",
+    "caId": "urn:uuid:6e0acce1-22db-497a-b6ea-7c460aaad5da",
+    "issuedAt": "2026-08-05T07:48:38.926Z"
+  },
+  "ジジイのautumn-sporty-coat-style": {
+    "postId": 1487,
+    "casUrl": "/astro-cas/1487_cas.json",
+    "caId": "urn:uuid:6ab3886a-3624-4072-bc96-54416b9acc3d",
+    "issuedAt": "2026-08-05T07:48:40.861Z"
+  },
+  "ジジイのbrown-suit-style-with-autumn-color-tie": {
+    "postId": 1476,
+    "casUrl": "/astro-cas/1476_cas.json",
+    "caId": "urn:uuid:be5639a9-f218-41ed-8aa3-94f20fb3d968",
+    "issuedAt": "2026-08-05T07:48:43.096Z"
+  },
+  "ジジイのmilitary-jacket-style-by-eral55": {
+    "postId": 1459,
+    "casUrl": "/astro-cas/1459_cas.json",
+    "caId": "urn:uuid:b2d981b6-b8cd-47cd-8833-604b1d6a4924",
+    "issuedAt": "2026-08-05T07:48:47.052Z",
+    "adsCasUrl": "/astro-cas/1459_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:48:47.052Z"
+  },
+  "ジジイのautumn-dolman-jacket-by-anatomica": {
+    "postId": 1445,
+    "casUrl": "/astro-cas/1445_cas.json",
+    "caId": "urn:uuid:0d2c2054-0f0a-4dbf-bb19-528f66e9fab3",
+    "issuedAt": "2026-08-05T07:48:48.851Z"
+  },
+  "ジジイのcashmere-jacket-by-attolini": {
+    "postId": 1437,
+    "casUrl": "/astro-cas/1437_cas.json",
+    "caId": "urn:uuid:9776abe2-e8c1-470a-b96a-5fd932d792a4",
+    "issuedAt": "2026-08-05T07:48:50.750Z"
+  },
+  "ジジイのduster-coat-style": {
+    "postId": 1425,
+    "casUrl": "/astro-cas/1425_cas.json",
+    "caId": "urn:uuid:fc8c99eb-70b7-4ad0-a8a7-d2b7bfc37d39",
+    "issuedAt": "2026-08-05T07:48:52.539Z"
+  },
+  "ジジイのharrington-jacket-style": {
+    "postId": 1416,
+    "casUrl": "/astro-cas/1416_cas.json",
+    "caId": "urn:uuid:ca3f3623-6651-4f95-8949-b77b35864980",
+    "issuedAt": "2026-08-05T07:48:54.646Z"
+  },
+  "ジジイのweekend-vest-style": {
+    "postId": 1383,
+    "casUrl": "/astro-cas/1383_cas.json",
+    "caId": "urn:uuid:f87f2754-88eb-4c6e-919e-434548d098b0",
+    "issuedAt": "2026-08-05T07:48:56.421Z"
+  },
+  "ジジイのpinstripe-jacket-style": {
+    "postId": 1360,
+    "casUrl": "/astro-cas/1360_cas.json",
+    "caId": "urn:uuid:0f9f8211-9900-4153-986d-03dfef9f8fdf",
+    "issuedAt": "2026-08-05T07:48:58.242Z"
+  },
+  "ジジイのautumn-rain-coat-style": {
+    "postId": 1372,
+    "casUrl": "/astro-cas/1372_cas.json",
+    "caId": "urn:uuid:cd67ac18-0343-494a-a638-2f17b5634b28",
+    "issuedAt": "2026-08-05T07:48:59.972Z"
+  },
+  "ジジイのdenim-style-with-field-jacket": {
+    "postId": 1350,
+    "casUrl": "/astro-cas/1350_cas.json",
+    "caId": "urn:uuid:526fbae4-78ea-41d8-973a-0920bf19ff88",
+    "issuedAt": "2026-08-05T07:49:01.995Z"
+  },
+  "ジジイのnavy-pinstripe-suit-style-2": {
+    "postId": 1343,
+    "casUrl": "/astro-cas/1343_cas.json",
+    "caId": "urn:uuid:2e05bc46-718c-4787-ba84-e32a6712f4cd",
+    "issuedAt": "2026-08-05T07:49:03.819Z"
+  },
+  "ジジイのautumn-style-using-eral55-check-jacket-and-cotton-pants": {
+    "postId": 1329,
+    "casUrl": "/astro-cas/1329_cas.json",
+    "caId": "urn:uuid:6c46761f-976e-447e-bf1f-d659ae141640",
+    "issuedAt": "2026-08-05T07:49:05.753Z"
+  },
+  "ジジイのautumn-coat-style-with-kired-and-rota-fedeli": {
+    "postId": 1322,
+    "casUrl": "/astro-cas/1322_cas.json",
+    "caId": "urn:uuid:64f02bfb-fa30-4292-b3e7-42e27709afae",
+    "issuedAt": "2026-08-05T07:49:07.507Z"
+  },
+  "ジジイのweekend-style-with-vest-and-chino-pants": {
+    "postId": 1310,
+    "casUrl": "/astro-cas/1310_cas.json",
+    "caId": "urn:uuid:86525c85-1b1b-46dd-94d6-8c559dc25d2a",
+    "issuedAt": "2026-08-05T07:49:09.251Z"
+  },
+  "ジジイのglen-plaid-jacket-style-2": {
+    "postId": 1295,
+    "casUrl": "/astro-cas/1295_cas.json",
+    "caId": "urn:uuid:08955b3f-ca44-4489-a2c4-09ba8ba0cfa9",
+    "issuedAt": "2026-08-05T07:49:10.990Z"
+  },
+  "ジジイのautumn-cotton-suit-style": {
+    "postId": 1281,
+    "casUrl": "/astro-cas/1281_cas.json",
+    "caId": "urn:uuid:28cc795d-e308-4cbd-a4d9-8497710163f6",
+    "issuedAt": "2026-08-05T07:49:12.988Z"
+  },
+  "1272-2": {
+    "postId": 1272,
+    "casUrl": "/astro-cas/1272_cas.json",
+    "caId": "urn:uuid:fbf3d0ed-3fa9-4810-966f-e260f9592e5a",
+    "issuedAt": "2026-08-05T07:49:14.764Z"
+  },
+  "ジジイのglen-plaid-jacket-style": {
+    "postId": 1265,
+    "casUrl": "/astro-cas/1265_cas.json",
+    "caId": "urn:uuid:325e2419-5876-4e40-9d16-ff0201ff0c1f",
+    "issuedAt": "2026-08-05T07:49:16.501Z"
+  },
+  "ジジイのpeal-lapel-single-breasted-suit-style": {
+    "postId": 1260,
+    "casUrl": "/astro-cas/1260_cas.json",
+    "caId": "urn:uuid:58eddbcb-48c8-4bb4-b484-08e0da4a1e85",
+    "issuedAt": "2026-08-05T07:49:20.717Z",
+    "adsCasUrl": "/astro-cas/1260_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:49:20.717Z"
+  },
+  "ジジイのweekend-style": {
+    "postId": 1247,
+    "casUrl": "/astro-cas/1247_cas.json",
+    "caId": "urn:uuid:fbd1508a-b4bd-4c57-9cfb-28f7187511c9",
+    "issuedAt": "2026-08-05T07:49:22.691Z"
+  },
+  "ジジイのnavy-suit-jacket-mix-and-match-with-white-trousers": {
+    "postId": 1240,
+    "casUrl": "/astro-cas/1240_cas.json",
+    "caId": "urn:uuid:a14410e8-0d94-4cd2-9e28-af6955fa30b2",
+    "issuedAt": "2026-08-05T07:49:24.420Z"
+  },
+  "ジジイのgrey-suit-style-with-or-without-tie": {
+    "postId": 1203,
+    "casUrl": "/astro-cas/1203_cas.json",
+    "caId": "urn:uuid:50ff095b-809a-4d3a-b15c-dbf806b7f5dc",
+    "issuedAt": "2026-08-05T07:49:26.161Z"
+  },
+  "ジジイのnavy-linen-shirt-style-with-grey-work-pants": {
+    "postId": 1178,
+    "casUrl": "/astro-cas/1178_cas.json",
+    "caId": "urn:uuid:bfa79c47-6688-4402-8c5e-0887010cb4d9",
+    "issuedAt": "2026-08-05T07:49:28.023Z"
+  },
+  "ジジイの車選び-タイムレスな価値を持つメルセ": {
+    "postId": 1155,
+    "casUrl": "/astro-cas/1155_cas.json",
+    "caId": "urn:uuid:35b239e0-dcb9-46f2-b795-59be93dd26e7",
+    "issuedAt": "2026-08-05T07:49:30.397Z"
+  },
+  "ジジイのsummer-stripes-jacket-style-with-light-blue-shirt-and-white-denim": {
+    "postId": 1142,
+    "casUrl": "/astro-cas/1142_cas.json",
+    "caId": "urn:uuid:7773a35c-3774-4d6f-9750-31936f667496",
+    "issuedAt": "2026-08-05T07:49:32.084Z"
+  },
+  "ジジイのred-linen-shirt-style-its-style-hint-is-the-one-scene-from-plein-soleil": {
+    "postId": 1119,
+    "casUrl": "/astro-cas/1119_cas.json",
+    "caId": "urn:uuid:d5acf8f5-efb1-46dd-aa93-925445c49fd3",
+    "issuedAt": "2026-08-05T07:49:33.751Z"
+  },
+  "ジジイのsummer-relaxed-jacket-style-with-or-without-tie": {
+    "postId": 1090,
+    "casUrl": "/astro-cas/1090_cas.json",
+    "caId": "urn:uuid:a80cdfed-e069-44d8-b7c3-6f6d3960309e",
+    "issuedAt": "2026-08-05T07:49:35.491Z"
+  },
+  "ジジイのolive-cotton-suit-cesare-attolini-per-tie-your-tie": {
+    "postId": 1080,
+    "casUrl": "/astro-cas/1080_cas.json",
+    "caId": "urn:uuid:b9c12860-5e96-4002-9a44-86a987821c94",
+    "issuedAt": "2026-08-05T07:49:39.619Z",
+    "adsCasUrl": "/astro-cas/1080_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:49:39.619Z"
+  },
+  "ジジイのsummer-check-jacket-style-with-denim": {
+    "postId": 1071,
+    "casUrl": "/astro-cas/1071_cas.json",
+    "caId": "urn:uuid:93b5603a-a541-42bc-8f6b-aa6a77c6b342",
+    "issuedAt": "2026-08-05T07:49:41.473Z"
+  },
+  "ジジイのclassic-navy-suit-style-by-cesare-attolini": {
+    "postId": 1054,
+    "casUrl": "/astro-cas/1054_cas.json",
+    "caId": "urn:uuid:c4adf567-16fd-43ee-94a4-9906fadcc16b",
+    "issuedAt": "2026-08-05T07:49:45.669Z",
+    "adsCasUrl": "/astro-cas/1054_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:49:45.669Z"
+  },
+  "ジジイのoff-white-suit-style-with-burgundy-knitted-tie": {
+    "postId": 1043,
+    "casUrl": "/astro-cas/1043_cas.json",
+    "caId": "urn:uuid:cdf16464-b68c-4a13-bf42-c6e561354b1c",
+    "issuedAt": "2026-08-05T07:49:47.428Z"
+  },
+  "ジジイのnatural-dyeing-tea-color-shirt-style": {
+    "postId": 1033,
+    "casUrl": "/astro-cas/1033_cas.json",
+    "caId": "urn:uuid:0540cb49-528d-407c-830e-df3feac5050d",
+    "issuedAt": "2026-08-05T07:49:49.339Z"
+  },
+  "ジジイのnavy-work-shirt-with-blue-denim-style": {
+    "postId": 1026,
+    "casUrl": "/astro-cas/1026_cas.json",
+    "caId": "urn:uuid:1f60607a-c06d-44ad-975b-9de8516e441d",
+    "issuedAt": "2026-08-05T07:49:51.169Z"
+  },
+  "ジジイのbrown-suit-with-embroidered-tie（刺繍付きタイ）": {
+    "postId": 1015,
+    "casUrl": "/astro-cas/1015_cas.json",
+    "caId": "urn:uuid:48c4e646-6ca9-48a8-842f-ed73558e1235",
+    "issuedAt": "2026-08-05T07:49:54.687Z",
+    "adsCasUrl": "/astro-cas/1015_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:49:54.687Z"
+  },
+  "ジジイのnavy-jacket-style-with-check-trousers": {
+    "postId": 1005,
+    "casUrl": "/astro-cas/1005_cas.json",
+    "caId": "urn:uuid:69d3fb6f-b648-4a39-a99d-6b3c2ca46662",
+    "issuedAt": "2026-08-05T07:49:56.439Z"
+  },
+  "ジジイのlight-blue-grey-suit-sytle": {
+    "postId": 995,
+    "casUrl": "/astro-cas/995_cas.json",
+    "caId": "urn:uuid:49796116-2cbb-4205-b028-f3d318a7be47",
+    "issuedAt": "2026-08-05T07:49:58.197Z"
+  },
+  "ジジイのdenim-shirt-style-by-madison-blue": {
+    "postId": 985,
+    "casUrl": "/astro-cas/985_cas.json",
+    "caId": "urn:uuid:7d61e570-097a-4eaf-9d7c-15d122ff102f",
+    "issuedAt": "2026-08-05T07:50:01.918Z",
+    "adsCasUrl": "/astro-cas/985_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:50:01.918Z"
+  },
+  "ジジイのsummer-rugged-jacket-style-夏のラギッドジャケットスタイル": {
+    "postId": 972,
+    "casUrl": "/astro-cas/972_cas.json",
+    "caId": "urn:uuid:e4a4a803-ab11-485b-b392-4f47b6ee1ee5",
+    "issuedAt": "2026-08-05T07:50:03.753Z"
+  },
+  "ジジイのsummer-linen-suit-style-夏のベージュリネンスーツのスタ": {
+    "postId": 962,
+    "casUrl": "/astro-cas/962_cas.json",
+    "caId": "urn:uuid:301a8433-77a8-4acf-81ce-901fa838074a",
+    "issuedAt": "2026-08-05T07:50:05.503Z"
+  },
+  "ジジイのcheck-jacket-style-with-medium-grey-trousers": {
+    "postId": 949,
+    "casUrl": "/astro-cas/949_cas.json",
+    "caId": "urn:uuid:7069f915-fadb-43b7-b8ef-faa61ecc265a",
+    "issuedAt": "2026-08-05T07:50:07.381Z"
+  },
+  "ジジイのsummer-afternoon-style-with-layon-shirt": {
+    "postId": 943,
+    "casUrl": "/astro-cas/943_cas.json",
+    "caId": "urn:uuid:bf669468-c4f5-4179-88ed-f8ae35b0edd9",
+    "issuedAt": "2026-08-05T07:50:09.169Z"
+  },
+  "ジジイのsingle-peaked-lapel-with-alden-monk-strap": {
+    "postId": 926,
+    "casUrl": "/astro-cas/926_cas.json",
+    "caId": "urn:uuid:8ec42024-f32f-40b2-ab2d-df8d37242891",
+    "issuedAt": "2026-08-05T07:50:12.697Z",
+    "adsCasUrl": "/astro-cas/926_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:50:12.697Z"
+  },
+  "ジジイの-brown-pinstripe-suit-style": {
+    "postId": 918,
+    "casUrl": "/astro-cas/918_cas.json",
+    "caId": "urn:uuid:97022b35-4ad0-4334-b7ac-11a3ffe22d65",
+    "issuedAt": "2026-08-05T07:50:14.452Z"
+  },
+  "ジジイのaloha-shirt-style": {
+    "postId": 870,
+    "casUrl": "/astro-cas/870_cas.json",
+    "caId": "urn:uuid:5c75c806-ff2c-4b5b-84a5-764c52904a7e",
+    "issuedAt": "2026-08-05T07:50:16.220Z"
+  },
+  "ジジイのsummer-jacket-style-with-off-white-jacket-and-trousers-with-a-vintage-feel": {
+    "postId": 858,
+    "casUrl": "/astro-cas/858_cas.json",
+    "caId": "urn:uuid:95addfde-1e9d-4e4a-a7be-e0a8f23cba6c",
+    "issuedAt": "2026-08-05T07:50:18.015Z"
+  },
+  "ジジイのlinen-brown-suit": {
+    "postId": 846,
+    "casUrl": "/astro-cas/846_cas.json",
+    "caId": "urn:uuid:833c137c-f0f2-415c-ae41-f7c666d49ea5",
+    "issuedAt": "2026-08-05T07:50:19.827Z"
+  },
+  "ジジイのsummer-cashmere-suit-style-kiton-suit": {
+    "postId": 837,
+    "casUrl": "/astro-cas/837_cas.json",
+    "caId": "urn:uuid:d5d36a0d-17f8-4594-a05a-8173fb4105d7",
+    "issuedAt": "2026-08-05T07:50:21.574Z"
+  },
+  "ジジイのmilitary-style-with-m47pants-and-big-yank-shirt": {
+    "postId": 825,
+    "casUrl": "/astro-cas/825_cas.json",
+    "caId": "urn:uuid:10de6537-0a55-4f22-97ac-6a7283a8c98e",
+    "issuedAt": "2026-08-05T07:50:23.339Z"
+  },
+  "ジジイのlinen-suit-style-made-by-vintage-fabric": {
+    "postId": 812,
+    "casUrl": "/astro-cas/812_cas.json",
+    "caId": "urn:uuid:495d0c6d-eeaa-4798-9cfc-16b507245e5f",
+    "issuedAt": "2026-08-05T07:50:25.231Z"
+  },
+  "ジジイ-in-paris-memories-of-january-2020": {
+    "postId": 446,
+    "casUrl": "/astro-cas/446_cas.json",
+    "caId": "urn:uuid:cd73e2d7-16f6-42ad-8941-109e5bab7e8f",
+    "issuedAt": "2026-08-05T07:50:29.792Z",
+    "adsCasUrl": "/astro-cas/446_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:50:29.792Z"
+  },
+  "ジジイのsummer-style-with-brown-jacket-and-denim": {
+    "postId": 800,
+    "casUrl": "/astro-cas/800_cas.json",
+    "caId": "urn:uuid:a37d5937-b4c2-4593-8531-d21dba59ae62",
+    "issuedAt": "2026-08-05T07:50:31.589Z"
+  },
+  "ジジイのresort-mood-style-with-aloha-shirt": {
+    "postId": 788,
+    "casUrl": "/astro-cas/788_cas.json",
+    "caId": "urn:uuid:c7a43d07-0269-44f0-88d9-50a38da8fe20",
+    "issuedAt": "2026-08-05T07:50:33.392Z"
+  },
+  "ジジイのsummer-cashmere-suit": {
+    "postId": 779,
+    "casUrl": "/astro-cas/779_cas.json",
+    "caId": "urn:uuid:2537ef5b-6070-4ffa-94a4-ac28253c1245",
+    "issuedAt": "2026-08-05T07:50:35.178Z"
+  },
+  "ジジイのivy-jacket-style": {
+    "postId": 770,
+    "casUrl": "/astro-cas/770_cas.json",
+    "caId": "urn:uuid:d4d0d3d3-27e5-4292-b3fd-22cfa9d06c6f",
+    "issuedAt": "2026-08-05T07:50:36.920Z"
+  },
+  "ジジイのolive-cotton-suit-style": {
+    "postId": 758,
+    "casUrl": "/astro-cas/758_cas.json",
+    "caId": "urn:uuid:3a8e4f3d-c279-499e-92fb-23504c8397e4",
+    "issuedAt": "2026-08-05T07:50:38.683Z"
+  },
+  "ジジイのmilitary-mix-style": {
+    "postId": 652,
+    "casUrl": "/astro-cas/652_cas.json",
+    "caId": "urn:uuid:8c7e409f-9b1f-4739-81c6-a1fddf636d43",
+    "issuedAt": "2026-08-05T07:50:40.575Z"
+  },
+  "ジジイのweekend-style-blue-style": {
+    "postId": 633,
+    "casUrl": "/astro-cas/633_cas.json",
+    "caId": "urn:uuid:7835305d-88cb-4be2-b0a8-081f7ec3cc68",
+    "issuedAt": "2026-08-05T07:50:42.466Z"
+  },
+  "ジジイのcheck-jacket-style": {
+    "postId": 617,
+    "casUrl": "/astro-cas/617_cas.json",
+    "caId": "urn:uuid:88d60b04-a9a0-4b2d-bb47-e36df8465e7e",
+    "issuedAt": "2026-08-05T07:50:44.327Z"
+  },
+  "ジジイのblack-suit-fabric-dormeuil-tonik-wool": {
+    "postId": 603,
+    "casUrl": "/astro-cas/603_cas.json",
+    "caId": "urn:uuid:f13388dd-7c48-41e8-a4c4-d9f588c695de",
+    "issuedAt": "2026-08-05T07:50:46.149Z"
+  },
+  "ジジイのfrench-ivy-style": {
+    "postId": 565,
+    "casUrl": "/astro-cas/565_cas.json",
+    "caId": "urn:uuid:c5b3050f-23e9-493e-8146-1eaf63420134",
+    "issuedAt": "2026-08-05T07:50:47.911Z"
+  },
+  "ジジイのweekend-style-beige-combination": {
+    "postId": 551,
+    "casUrl": "/astro-cas/551_cas.json",
+    "caId": "urn:uuid:3d84742d-971c-4995-832b-3e997eda5608",
+    "issuedAt": "2026-08-05T07:50:49.690Z"
+  },
+  "ジジイのwhite-cabana-shirt-style": {
+    "postId": 535,
+    "casUrl": "/astro-cas/535_cas.json",
+    "caId": "urn:uuid:d4cfd266-ae31-48d7-ab70-baac646c23cd",
+    "issuedAt": "2026-08-05T07:50:53.967Z",
+    "adsCasUrl": "/astro-cas/535_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:50:53.967Z"
+  },
+  "ジジイのnavy-suit-style-kiton-linen-jacket-with-grey-trousers": {
+    "postId": 521,
+    "casUrl": "/astro-cas/521_cas.json",
+    "caId": "urn:uuid:7c092be9-132d-47db-a613-d8f7a9e64037",
+    "issuedAt": "2026-08-05T07:50:55.870Z"
+  },
+  "ジジイのbrown-linen-suit-style": {
+    "postId": 506,
+    "casUrl": "/astro-cas/506_cas.json",
+    "caId": "urn:uuid:e2b570f0-9cba-4ee8-a244-86dc2bae7bcc",
+    "issuedAt": "2026-08-05T07:50:57.683Z"
+  },
+  "ジジイのfaded-denim-style-45r-faded-denim-with-leather-jacket": {
+    "postId": 469,
+    "casUrl": "/astro-cas/469_cas.json",
+    "caId": "urn:uuid:6555d882-17c1-4c38-9e40-7b761a755315",
+    "issuedAt": "2026-08-05T07:50:59.451Z"
+  },
+  "ジジイのrainy-day-jacket-style-eral55-jacket-with-chino-pants": {
+    "postId": 485,
+    "casUrl": "/astro-cas/485_cas.json",
+    "caId": "urn:uuid:b8f352e5-3416-4e92-a44c-4f6f95aedbe1",
+    "issuedAt": "2026-08-05T07:51:03.780Z",
+    "adsCasUrl": "/astro-cas/485_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:03.780Z"
+  },
+  "ジジイのclassic-jacket-style-navy-jacket-with-grey-trousers": {
+    "postId": 400,
+    "casUrl": "/astro-cas/400_cas.json",
+    "caId": "urn:uuid:8feda3b6-a177-4c86-91a6-eb570cfd54aa",
+    "issuedAt": "2026-08-05T07:51:05.857Z"
+  },
+  "ジジイのweekend-style-lemaire-field-jacket-with-eral-55-light-weight-cotton-pants": {
+    "postId": 454,
+    "casUrl": "/astro-cas/454_cas.json",
+    "caId": "urn:uuid:4a352364-20fa-4bab-9518-c81d4f598e8d",
+    "issuedAt": "2026-08-05T07:51:09.781Z",
+    "adsCasUrl": "/astro-cas/454_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:09.781Z"
+  },
+  "ジジイのivy-style-anatomica-jacket-with-tango-pants": {
+    "postId": 423,
+    "casUrl": "/astro-cas/423_cas.json",
+    "caId": "urn:uuid:c692cd16-bc6f-491f-a8cb-408f0effdcd6",
+    "issuedAt": "2026-08-05T07:51:13.542Z",
+    "adsCasUrl": "/astro-cas/423_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:13.542Z"
+  },
+  "ジジイのpeak-lapel-single-breasted-suit": {
+    "postId": 389,
+    "casUrl": "/astro-cas/389_cas.json",
+    "caId": "urn:uuid:d2cee4ad-43c5-49fa-9964-52c718783271",
+    "issuedAt": "2026-08-05T07:51:16.940Z",
+    "adsCasUrl": "/astro-cas/389_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:16.940Z"
+  },
+  "ジジイのsafari-jacket-style": {
+    "postId": 356,
+    "casUrl": "/astro-cas/356_cas.json",
+    "caId": "urn:uuid:04d77e67-26dd-4cae-b89b-dd8fb39ae242",
+    "issuedAt": "2026-08-05T07:51:20.919Z",
+    "adsCasUrl": "/astro-cas/356_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:20.919Z"
+  },
+  "ジジイのdenim-on-denim-style-white-denim-combination-with-svevo-knit-polo": {
+    "postId": 324,
+    "casUrl": "/astro-cas/324_cas.json",
+    "caId": "urn:uuid:1299e20a-2326-4049-855f-d8727fd05fc8",
+    "issuedAt": "2026-08-05T07:51:24.804Z",
+    "adsCasUrl": "/astro-cas/324_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:24.804Z"
+  },
+  "ジジイのdenim-jacket-style-lee101j-with-off-white-chino-pants": {
+    "postId": 306,
+    "casUrl": "/astro-cas/306_cas.json",
+    "caId": "urn:uuid:48c095c0-8bca-4126-a8ae-e1dbdd99adbb",
+    "issuedAt": "2026-08-05T07:51:28.809Z",
+    "adsCasUrl": "/astro-cas/306_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:28.809Z"
+  },
+  "ジジイの愛読書1-ダンテの「新生」-my-favorite-book-series": {
+    "postId": 300,
+    "casUrl": "/astro-cas/300_cas.json",
+    "caId": "urn:uuid:a1614b2f-4e4e-477b-b808-8d181485cf06",
+    "issuedAt": "2026-08-05T07:51:30.551Z"
+  },
+  "ジジイの時計-tank-louis-cartier-watch": {
+    "postId": 279,
+    "casUrl": "/astro-cas/279_cas.json",
+    "caId": "urn:uuid:e8adc339-a8c0-4e39-b878-105986d3e56e",
+    "issuedAt": "2026-08-05T07:51:32.443Z"
+  },
+  "ジジイのwhite-t-shirt-faded-denim-style-fedeli-t-shirt-with-duster-coat-and-faded-denim": {
+    "postId": 265,
+    "casUrl": "/astro-cas/265_cas.json",
+    "caId": "urn:uuid:31de3930-7f82-41c4-8eb5-bef28f2ebc7b",
+    "issuedAt": "2026-08-05T07:51:34.377Z"
+  },
+  "ジジイのbeige-jacket-style-sartorio-napoli-with-rota-pantaloni-trousers-and-john-lobb-london-shoes": {
+    "postId": 249,
+    "casUrl": "/astro-cas/249_cas.json",
+    "caId": "urn:uuid:8332a612-2405-4673-a19f-8f0c8331f63c",
+    "issuedAt": "2026-08-05T07:51:38.015Z",
+    "adsCasUrl": "/astro-cas/249_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:38.015Z"
+  },
+  "ジジイのchic-suit-style-kiton-suit-with-light-blue-shirt-and-sette-pieghe-tie": {
+    "postId": 235,
+    "casUrl": "/astro-cas/235_cas.json",
+    "caId": "urn:uuid:4d2fbe91-5ce4-44e3-922e-1515e69703f2",
+    "issuedAt": "2026-08-05T07:51:40.062Z"
+  },
+  "ジジイのkiton-suit-brown-suit-combination": {
+    "postId": 221,
+    "casUrl": "/astro-cas/221_cas.json",
+    "caId": "urn:uuid:d2ddd2ad-e211-4664-87fb-e36ac19406dd",
+    "issuedAt": "2026-08-05T07:51:41.923Z"
+  },
+  "ジジイのgilet-style-with-alden-shoes": {
+    "postId": 209,
+    "casUrl": "/astro-cas/209_cas.json",
+    "caId": "urn:uuid:383314f4-9367-4432-8f63-d6f4a7b2052e",
+    "issuedAt": "2026-08-05T07:51:45.672Z",
+    "adsCasUrl": "/astro-cas/209_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:45.672Z"
+  },
+  "ジジイのsporty-jacket-style-stripe-jacket-with-white-shirt-and-white-denim": {
+    "postId": 180,
+    "casUrl": "/astro-cas/180_cas.json",
+    "caId": "urn:uuid:074f1907-98eb-4cba-9d55-94d257e0b363",
+    "issuedAt": "2026-08-05T07:51:47.547Z"
+  },
+  "ジジイのshirt-tie-combination-with-khaki-suit": {
+    "postId": 140,
+    "casUrl": "/astro-cas/140_cas.json",
+    "caId": "urn:uuid:fa19047c-cc59-472f-9516-658d021dce78",
+    "issuedAt": "2026-08-05T07:51:49.256Z"
+  },
+  "ジジイのkiton-suit-自分に似合うスタイルを見つけよう": {
+    "postId": 96,
+    "casUrl": "/astro-cas/96_cas.json",
+    "caId": "urn:uuid:7b2c999c-78a5-4c85-acd8-b8d0063d83ce",
+    "issuedAt": "2026-08-05T07:51:51.353Z"
+  },
+  "ジジイのliverano-suit": {
+    "postId": 10,
+    "casUrl": "/astro-cas/10_cas.json",
+    "caId": "urn:uuid:7b32045a-0c4e-4f1c-9846-9974c24e39a3",
+    "issuedAt": "2026-08-05T07:51:55.335Z",
+    "adsCasUrl": "/astro-cas/10_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T07:51:55.335Z"
   }
 }
