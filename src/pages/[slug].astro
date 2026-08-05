@@ -126,7 +126,7 @@ function addStableTargetIds(content: string): string {
   const contentWithoutDynamicEmbeds = content.replace(
     /<blockquote\b[^>]*(?:\bclass=(['"])[^'"]*\binstagram-media\b[^'"]*\1|\bdata-instgrm-[^\s=]+)[^>]*>[\s\S]*?<\/blockquote>/gi,
     (embed) => {
-      const placeholder = \`<!-- ca-dynamic-embed:\${protectedEmbeds.length} -->\`;
+      const placeholder = `<!-- ca-dynamic-embed:${protectedEmbeds.length} -->`;
       protectedEmbeds.push(embed);
       return placeholder;
     },
@@ -147,7 +147,7 @@ function addStableTargetIds(content: string): string {
 
       const id = createHash('sha1').update(text).digest('hex').slice(0, 12);
 
-      return \`<\${tag}\${attributes} id="op-body-\${id}">\${innerHtml}</\${tag}>\`;
+      return `<${tag}${attributes} id="op-body-${id}">${innerHtml}</${tag}>`;
     },
   );
 
