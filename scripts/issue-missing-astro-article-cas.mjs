@@ -21,7 +21,9 @@ async function getPublishedPosts() {
   let page = 1;
 
   while (true) {
-    const apiBase = new URL(`${wordpressApiUrl.replace(/\\/+$/, '')}/`);
+    const apiBase = new URL(
+      wordpressApiUrl.endsWith('/') ? wordpressApiUrl : `${wordpressApiUrl}/`,
+    );
     const endpoint = new URL('posts', apiBase);
     endpoint.searchParams.set('status', 'publish');
     endpoint.searchParams.set('per_page', '100');
