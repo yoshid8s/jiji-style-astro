@@ -6,5 +6,29 @@
     "issuedAt": "2026-08-05T04:09:18.855Z",
     "adsCasUrl": "/astro-cas/3623_ads_cas.json",
     "adsIssuedAt": "2026-08-05T04:09:18.855Z"
+  },
+  "ジジイのsummer-white-shirt-styles-3-looks": {
+    "postId": 3601,
+    "casUrl": "/astro-cas/3601_cas.json",
+    "caId": "urn:uuid:bea49085-c780-4bf3-9b58-fd3aae9d63df",
+    "issuedAt": "2026-08-05T06:55:40.002Z",
+    "adsCasUrl": "/astro-cas/3601_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T06:55:40.002Z"
+  },
+  "black-t-shirt-style-inspired-by-giorgio-armani": {
+    "postId": 3589,
+    "casUrl": "/astro-cas/3589_cas.json",
+    "caId": "urn:uuid:ee565d39-d06e-474c-ad9c-d7b03163bc04",
+    "issuedAt": "2026-08-05T06:55:44.151Z",
+    "adsCasUrl": "/astro-cas/3589_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T06:55:44.151Z"
+  },
+  "summer-amekaji-t-shirt-style": {
+    "postId": 3575,
+    "casUrl": "/astro-cas/3575_cas.json",
+    "caId": "urn:uuid:b8bb7002-23da-4aaa-bd36-98b50eb0ca01",
+    "issuedAt": "2026-08-05T06:55:48.057Z",
+    "adsCasUrl": "/astro-cas/3575_ads_cas.json",
+    "adsIssuedAt": "2026-08-05T06:55:48.057Z"
   }
 }
