@@ -12,6 +12,10 @@ interface Props {
 }
 
 const { ad, placement, postId } = Astro.props;
+const adCas =
+  ad?.cas && /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(ad.cas)
+    ? ad.cas
+    : undefined;
 ---
 
 {
@@ -53,6 +57,12 @@ const { ad, placement, postId } = Astro.props;
         )
       }
     </aside>
+  )
+}
+
+{
+  adCas && (
+    <script type="application/cas+json" set:html={adCas}></script>
   )
 }
 
