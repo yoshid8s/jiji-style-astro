@@ -53,6 +53,14 @@ async function getPublishedPosts() {
   }
 }
 
+function decodeWordPressSlug(slug) {
+  try {
+    return decodeURIComponent(slug);
+  } catch {
+    return slug;
+  }
+}
+
 function runIssueScript(slug) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, ['scripts/issue-astro-article-ca.mjs'], {
@@ -82,7 +90,10 @@ const manifestPath = path.join(
   'content-attestations.json',
 );
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
-const posts = await getPublishedPosts();
+const posts = (await getPublishedPosts()).map((post) => ({
+  ...post,
+  slug: decodeWordPressSlug(post.slug),
+}));
 const unissuedPosts = posts.filter((post) => !manifest[post.slug]?.casUrl);
 const targets = limit === 0 ? unissuedPosts : unissuedPosts.slice(0, limit);
 
