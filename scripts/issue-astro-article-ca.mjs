@@ -107,7 +107,7 @@ const manifestPath = path.join(
   'content-attestations.json',
 );
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
-const casUrl = `/cas/${post.id}_cas.json`;
+const casUrl = `/astro-cas/${post.id}_cas.json`;
 const existingCasPath = path.join(repositoryRoot, 'public', casUrl);
 let existingCaId = manifest[slug]?.caId;
 
