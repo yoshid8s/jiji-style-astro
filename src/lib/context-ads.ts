@@ -11,6 +11,7 @@ export interface ContextAd {
   destination: string;
   clickUrl: string;
   genre: string;
+  cas?: string;
 }
 
 interface ContextAdResponse {
