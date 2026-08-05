@@ -122,7 +122,17 @@ function normalizeTargetText(value: string): string {
 }
 
 function addStableTargetIds(content: string): string {
-  return content.replace(
+  const protectedEmbeds: string[] = [];
+  const contentWithoutDynamicEmbeds = content.replace(
+    /<blockquote\b[^>]*(?:\bclass=(['"])[^'"]*\binstagram-media\b[^'"]*\1|\bdata-instgrm-[^\s=]+)[^>]*>[\s\S]*?<\/blockquote>/gi,
+    (embed) => {
+      const placeholder = `<!-- ca-dynamic-embed:${protectedEmbeds.length} -->`;
+      protectedEmbeds.push(embed);
+      return placeholder;
+    },
+  );
+
+  const contentWithTargetIds = contentWithoutDynamicEmbeds.replace(
     /<(p|h[1-6]|figcaption|pre)\b([^>]*)>([\s\S]*?)<\/\1>/gi,
     (element, tag, attributes, innerHtml) => {
       if (/\bid=(['"])[^'"]+\1/i.test(attributes)) {
@@ -142,7 +152,7 @@ function addStableTargetIds(content: string): string {
   );
 
   return contentWithTargetIds.replace(
-    /<!-- ca-dynamic-embed:(\\d+) -->/g,
+    /<!-- ca-dynamic-embed:(\d+) -->/g,
     (_placeholder, index) => protectedEmbeds[Number(index)] ?? '',
   );
 }
