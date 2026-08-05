@@ -235,16 +235,23 @@ const contextAds = await Promise.all(
     ad: await getContextAd(post.id, placement),
   })),
 );
-const issuedAdCas = await Promise.all(
-  contextAds
-    .filter(({ ad }) => ad?.elementId && ad.image && ad.destination)
-    .map(async ({ placement, ad }) => {
-      if (!isRenderedContextAd(articleHtml, ad)) {
-        throw new Error(
-          `Selected context advertisement was not rendered for ${placement}: ${ad.elementId}`,
-        );
-      }
+const renderedContextAds = contextAds.filter(({ placement, ad }) => {
+  if (!ad?.elementId || !ad.image || !ad.destination) {
+    return false;
+  }
 
+  if (!isRenderedContextAd(articleHtml, ad)) {
+    console.warn(
+      `Skipping context ad CA because it is not rendered for ${placement}: ${ad.elementId}`,
+    );
+    return false;
+  }
+
+  return true;
+});
+
+const issuedAdCas = await Promise.all(
+  renderedContextAds.map(async ({ placement, ad }) => {
       const integrity = await createImageIntegrity(ad.image);
       const adCaId = `urn:uuid:${randomUUID()}`;
       const adAttestation = {
