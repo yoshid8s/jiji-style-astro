@@ -1,4 +1,6 @@
 ---
+import { createHash } from 'node:crypto';
+
 import {
   contextAdEventUrl,
   type ContextAd as ContextAdData,
@@ -12,6 +14,22 @@ interface Props {
 }
 
 const { ad, placement, postId } = Astro.props;
+
+async function createImageIntegrity(imageUrl: string): Promise<string> {
+  const response = await fetch(imageUrl);
+
+  if (!response.ok) {
+    throw new Error(
+      `広告画像を取得できませんでした: ${response.status} ${imageUrl}`,
+    );
+  }
+
+  const image = Buffer.from(await response.arrayBuffer());
+
+  return `sha256-${createHash('sha256').update(image).digest('base64')}`;
+}
+
+const imageIntegrity = ad ? await createImageIntegrity(ad.image) : undefined;
 ---
 
 {
@@ -36,6 +54,7 @@ const { ad, placement, postId } = Astro.props;
               id={ad.elementId}
               class="h-auto w-full"
               src={ad.image}
+              integrity={imageIntegrity}
               alt={ad.headline || ad.advertiser || 'Advertisement'}
               loading="lazy"
               decoding="async"
@@ -46,6 +65,7 @@ const { ad, placement, postId } = Astro.props;
             id={ad.elementId}
             class="h-auto w-full"
             src={ad.image}
+            integrity={imageIntegrity}
             alt={ad.headline || ad.advertiser || 'Advertisement'}
             loading="lazy"
             decoding="async"
