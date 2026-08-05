@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
@@ -57,6 +57,152 @@ function findJwt(value) {
   }
 
   return undefined;
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function issueAttestation(attestation) {
+  const issueResponse = await fetch(new URL('/ca', serverUrl), {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${Buffer.from(auth).toString('base64')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(attestation),
+  });
+
+  const responseText = await issueResponse.text();
+
+  if (!issueResponse.ok) {
+    throw new Error(`CA issuance failed: ${issueResponse.status} ${responseText}`);
+  }
+
+  let issueResponseBody;
+
+  try {
+    issueResponseBody = JSON.parse(responseText);
+  } catch {
+    issueResponseBody = responseText;
+  }
+
+  const issuedJwt = findJwt(issueResponseBody);
+
+  if (!issuedJwt) {
+    throw new Error('CA server response did not include a Content Attestation JWT.');
+  }
+
+  return issuedJwt;
+}
+
+async function createImageIntegrity(imageUrl) {
+  const response = await fetch(imageUrl);
+
+  if (!response.ok) {
+    throw new Error(`Advertisement image fetch failed: ${response.status} ${imageUrl}`);
+  }
+
+  const bytes = Buffer.from(await response.arrayBuffer());
+  return `sha256-${createHash('sha256').update(bytes).digest('base64')}`;
+}
+
+async function getContextAd(postId, placement) {
+  const endpoint = new URL('/wp-json/ca-manager/v1/context-ad', apiUrl);
+  endpoint.searchParams.set('post_id', String(postId));
+  endpoint.searchParams.set('placement', placement);
+
+  const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+
+  if (!response.ok) {
+    throw new Error(`Context advertisement lookup failed: ${response.status} ${endpoint}`);
+  }
+
+  const payload = await response.json();
+  return payload.ad ?? null;
+}
+
+function isRenderedContextAd(articleHtml, ad) {
+  const id = escapeRegExp(ad.elementId);
+  const image = escapeRegExp(ad.image);
+  const imageElement = new RegExp(
+    `<img\\b(?=[^>]*\\bid=(["'])${id}\\1)(?=[^>]*\\bsrc=(["'])${image}\\2)[^>]*>`,
+    'i',
+  );
+
+  return imageElement.test(articleHtml);
+}
+const apiUrl = requireEnvironment('WORDPRESS_API_URL', wordpressApiUrl);');
+}
+
+async function issueAttestation(attestation) {
+  const issueResponse = await fetch(new URL('/ca', serverUrl), {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${Buffer.from(auth).toString('base64')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(attestation),
+  });
+
+  const responseText = await issueResponse.text();
+
+  if (!issueResponse.ok) {
+    throw new Error(`CA issuance failed: ${issueResponse.status} ${responseText}`);
+  }
+
+  let issueResponseBody;
+
+  try {
+    issueResponseBody = JSON.parse(responseText);
+  } catch {
+    issueResponseBody = responseText;
+  }
+
+  const issuedJwt = findJwt(issueResponseBody);
+
+  if (!issuedJwt) {
+    throw new Error('CA server response did not include a Content Attestation JWT.');
+  }
+
+  return issuedJwt;
+}
+
+async function createImageIntegrity(imageUrl) {
+  const response = await fetch(imageUrl);
+
+  if (!response.ok) {
+    throw new Error(`Advertisement image fetch failed: ${response.status} ${imageUrl}`);
+  }
+
+  const bytes = Buffer.from(await response.arrayBuffer());
+  return `sha256-${createHash('sha256').update(bytes).digest('base64')}`;
+}
+
+async function getContextAd(postId, placement) {
+  const endpoint = new URL('/wp-json/ca-manager/v1/context-ad', apiUrl);
+  endpoint.searchParams.set('post_id', String(postId));
+  endpoint.searchParams.set('placement', placement);
+
+  const response = await fetch(endpoint, { headers: { Accept: 'application/json' } });
+
+  if (!response.ok) {
+    throw new Error(`Context advertisement lookup failed: ${response.status} ${endpoint}`);
+  }
+
+  const payload = await response.json();
+  return payload.ad ?? null;
+}
+
+function isRenderedContextAd(articleHtml, ad) {
+  const id = escapeRegExp(ad.elementId);
+  const image = escapeRegExp(ad.image);
+  const imageElement = new RegExp(
+    `<img\\b(?=[^>]*\\bid=(["'])${id}\\1)(?=[^>]*\\bsrc=(["'])${image}\\2)[^>]*>`,
+    'i',
+  );
+
+  return imageElement.test(articleHtml);
 }
 
 const apiUrl = requireEnvironment('WORDPRESS_API_URL', wordpressApiUrl);
@@ -150,46 +296,85 @@ const attestation = {
   })),
 };
 
-const issueResponse = await fetch(new URL('/ca', serverUrl), {
-  method: 'POST',
-  headers: {
-    Authorization: `Basic ${Buffer.from(auth).toString('base64')}`,
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(attestation),
-});
-
-const responseText = await issueResponse.text();
-
-if (!issueResponse.ok) {
-  throw new Error(`CA issuance failed: ${issueResponse.status} ${responseText}`);
-}
-
-let issueResponseBody;
-
-try {
-  issueResponseBody = JSON.parse(responseText);
-} catch {
-  issueResponseBody = responseText;
-}
-
-const issuedJwt = findJwt(issueResponseBody);
-
-if (!issuedJwt) {
-  throw new Error('CA server response did not include a Content Attestation JWT.');
-}
+const issuedJwt = await issueAttestation(attestation);
 
 await mkdir(path.dirname(existingCasPath), { recursive: true });
 await writeFile(existingCasPath, `${JSON.stringify([issuedJwt], null, 2)}\n`);
 
+const placements = ['top', 'middle', 'bottom'];
+const contextAds = await Promise.all(
+  placements.map(async (placement) => ({
+    placement,
+    ad: await getContextAd(post.id, placement),
+  })),
+);
+const issuedAdCas = await Promise.all(
+  contextAds
+    .filter(({ ad }) => ad?.elementId && ad.image && ad.destination)
+    .map(async ({ placement, ad }) => {
+      if (!isRenderedContextAd(articleHtml, ad)) {
+        throw new Error(
+          `Selected context advertisement was not rendered for ${placement}: ${ad.elementId}`,
+        );
+      }
+
+      const integrity = await createImageIntegrity(ad.image);
+      const adCaId = `urn:uuid:${randomUUID()}`;
+      const adAttestation = {
+        '@context': [
+          'https://www.w3.org/ns/credentials/v2',
+          'https://originator-profile.org/ns/credentials/v1',
+          'https://originator-profile.org/ns/cip/v1',
+          { '@language': 'ja-JP' },
+        ],
+        type: ['VerifiableCredential', 'ContentAttestation'],
+        issuer,
+        credentialSubject: {
+          id: adCaId,
+          type: 'OnlineAd',
+          name: ad.headline || ad.advertiser || 'Advertisement',
+          description: `Context Ad / ${placement} / genre=${ad.genre || ''}`,
+          image: { id: ad.image },
+          ...(ad.advertiser ? { author: [ad.advertiser] } : {}),
+          landingPageUrl: ad.destination,
+        },
+        allowedUrl: [pageUrl],
+        target: [
+          {
+            type: 'ExternalResourceTargetIntegrity',
+            cssSelector: `#${ad.elementId}`,
+            integrity,
+          },
+        ],
+      };
+
+      return issueAttestation(adAttestation);
+    }),
+);
+
+const adsCasUrl = `/astro-cas/${post.id}_ads_cas.json`;
+const adsCasPath = path.join(repositoryRoot, 'public', adsCasUrl);
+
+if (issuedAdCas.length > 0) {
+  await writeFile(adsCasPath, `${JSON.stringify(issuedAdCas, null, 2)}\n`);
+}
+
+const issuedAt = new Date().toISOString();
 manifest[slug] = {
   postId: post.id,
   casUrl,
   caId,
-  issuedAt: new Date().toISOString(),
+  issuedAt,
+  ...(issuedAdCas.length > 0
+    ? { adsCasUrl, adsIssuedAt: issuedAt }
+    : {}),
 };
 
 await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
-console.log(`Issued CA for ${pageUrl}`);
-console.log(`External CAS: ${casUrl}`);
+console.log(`Issued article CA for ${pageUrl}`);
+console.log(`External article CAS: ${casUrl}`);
+console.log(`Issued context ad CAs: ${issuedAdCas.length}`);
+if (issuedAdCas.length > 0) {
+  console.log(`External advertisement CAS: ${adsCasUrl}`);
+}
