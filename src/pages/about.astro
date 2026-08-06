@@ -1,5 +1,9 @@
 ---
+import ContentAttestation from '../components/ContentAttestation.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getArticleContentAttestations } from '../lib/content-attestations';
+
+const issuedCaUrls = getArticleContentAttestations('about');
 ---
 
 <BaseLayout
@@ -33,6 +37,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </p>
         </div>
         <!-- ca-target:end -->
+
+        <ContentAttestation casUrls={issuedCaUrls} />
 
         <a
           class="mt-8 inline-flex border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
