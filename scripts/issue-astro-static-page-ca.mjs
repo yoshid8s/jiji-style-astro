@@ -89,7 +89,7 @@ const staticPages = {
   home: {
     headline: "JiJi Style",
     description: "A personal journal about clothing, style and living well.",
-    type: "WebPage",
+    type: "Article",
     outputPath: "index.html",
     urlPath: "/",
     casFileName: "home_cas.json",
@@ -97,7 +97,7 @@ const staticPages = {
   about: {
     headline: "About JiJi",
     description: "JiJi Styleについて",
-    type: "WebPage",
+    type: "Article",
     outputPath: path.join("about", "index.html"),
     urlPath: "/about/",
     casFileName: "about_cas.json",
