@@ -1050,5 +1050,11 @@
     "issuedAt": "2026-08-05T07:51:55.335Z",
     "adsCasUrl": "/astro-cas/10_ads_cas.json",
     "adsIssuedAt": "2026-08-05T07:51:55.335Z"
+  },
+  "about": {
+    "pageId": "about",
+    "casUrl": "/astro-cas/about_cas.json",
+    "caId": "urn:uuid:56a33b89-9e96-48aa-93d4-0c49f3fa803f",
+    "issuedAt": "2026-08-06T01:21:36.263Z"
   }
 }
