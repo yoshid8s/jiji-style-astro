@@ -11,9 +11,25 @@ import {
 } from '../lib/wordpress';
 import ContentAttestation from '../components/ContentAttestation.astro';
 import { getArticleContentAttestations } from '../lib/content-attestations';
+import { createHash } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 
 const homePageId = 2163;
 const issuedCaUrls = getArticleContentAttestations('home');
+
+const siteManifestPath = path.join(
+  process.cwd(),
+  'public',
+  'site-manifest.json',
+);
+
+const siteManifestBytes = await readFile(siteManifestPath);
+
+const siteManifestIntegrity =
+  `sha256-${createHash('sha256')
+    .update(siteManifestBytes)
+    .digest('base64')}`;
 
 const sectionDefinitions = [
   { slug: 'daily-style', title: 'Daily Style', postCount: 3 },
@@ -221,6 +237,12 @@ try {
               </div>
               </div>
             </section>
+
+            <script
+              type="application/json"
+              src="/site-manifest.json"
+              integrity={siteManifestIntegrity}
+            ></script>
 
             <ContentAttestation casUrls={issuedCaUrls} />
 
