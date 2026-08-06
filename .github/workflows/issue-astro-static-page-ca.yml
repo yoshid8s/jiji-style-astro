@@ -27,6 +27,8 @@ jobs:
     if: inputs.deploy
     runs-on: ubuntu-latest
     env:
+      WORDPRESS_API_URL: https://style.yh-inc.jp/wp-json/wp/v2
+      SITE_URL: https://style.yh-inc.jp
       CA_SERVER_URL: https://playground.originator-profile.org
       CA_ISSUER: dns:example.com
       CA_PAGE_SLUG: ${{ inputs.slug }}
