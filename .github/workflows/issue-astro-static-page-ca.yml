@@ -52,6 +52,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Generate site manifest
+        run: node scripts/generate-site-manifest.mjs
+
       - name: Build Astro without the new CA
         run: pnpm build
 

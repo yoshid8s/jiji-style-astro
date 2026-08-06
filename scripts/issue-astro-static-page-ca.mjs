@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -85,6 +85,12 @@ async function issueAttestation(attestation) {
   return issuedJwt;
 }
 
+async function createFileIntegrity(filePath) {
+  const bytes = await readFile(filePath);
+
+  return `sha256-${createHash("sha256").update(bytes).digest("base64")}`;
+}
+
 const staticPages = {
   home: {
     headline: "JiJi Style",
@@ -139,6 +145,23 @@ if (targetElements.length === 0) {
   throw new Error(`No stable CA target elements were found in ${pagePath}`);
 }
 
+const additionalTargets = [];
+
+if (slug === "home") {
+  const siteManifestPath = path.join(
+    repositoryRoot,
+    "public",
+    "site-manifest.json",
+  );
+
+  const siteManifestIntegrity = await createFileIntegrity(siteManifestPath);
+
+  additionalTargets.push({
+    type: "ExternalResourceTargetIntegrity",
+    integrity: siteManifestIntegrity,
+  });
+}
+
 const manifestPath = path.join(
   repositoryRoot,
   "src",
@@ -180,11 +203,14 @@ const attestation = {
     editor: ["Yoshifumi Takeuchi"],
   },
   allowedUrl: [pageUrl],
-  target: targetElements.map(({ content, cssSelector }) => ({
-    type: "TextTargetIntegrity",
-    content,
-    cssSelector,
-  })),
+  target: [
+    ...targetElements.map(({ content, cssSelector }) => ({
+      type: "TextTargetIntegrity",
+      content,
+      cssSelector,
+    })),
+    ...additionalTargets,
+  ],
 };
 
 const issuedJwt = await issueAttestation(attestation);
@@ -203,4 +229,4 @@ await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
 console.log(`Issued static page CA for ${pageUrl}`);
 console.log(`External static page CAS: ${casUrl}`);
-console.log(`CA targets: ${targetElements.length}`);
+console.log(`CA targets: ${targetElements.length + additionalTargets.length}`);
