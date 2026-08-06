@@ -1,6 +1,6 @@
-import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
-import path from 'node:path';
+import { randomUUID } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
 
 const pageSlug = process.env.CA_PAGE_SLUG;
 const caServerUrl = process.env.CA_SERVER_URL;
@@ -17,21 +17,21 @@ function requireEnvironment(name, value) {
 }
 
 function decodeJwtPayload(jwt) {
-  const [, payload] = jwt.split('.');
+  const [, payload] = jwt.split(".");
 
   if (!payload) {
     return undefined;
   }
 
-  const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
-  const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, '=');
+  const base64 = payload.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, "=");
 
-  return JSON.parse(Buffer.from(padded, 'base64').toString('utf8'));
+  return JSON.parse(Buffer.from(padded, "base64").toString("utf8"));
 }
 
 function findJwt(value) {
   if (
-    typeof value === 'string' &&
+    typeof value === "string" &&
     /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(value)
   ) {
     return value;
@@ -41,7 +41,7 @@ function findJwt(value) {
     return value.map(findJwt).find(Boolean);
   }
 
-  if (value && typeof value === 'object') {
+  if (value && typeof value === "object") {
     return Object.values(value).map(findJwt).find(Boolean);
   }
 
@@ -49,11 +49,11 @@ function findJwt(value) {
 }
 
 async function issueAttestation(attestation) {
-  const issueResponse = await fetch(new URL('/ca', serverUrl), {
-    method: 'POST',
+  const issueResponse = await fetch(new URL("/ca", serverUrl), {
+    method: "POST",
     headers: {
-      Authorization: `Basic ${Buffer.from(auth).toString('base64')}`,
-      'Content-Type': 'application/json',
+      Authorization: `Basic ${Buffer.from(auth).toString("base64")}`,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(attestation),
   });
@@ -78,7 +78,7 @@ async function issueAttestation(attestation) {
 
   if (!issuedJwt) {
     throw new Error(
-      'CA server response did not include a Content Attestation JWT.',
+      "CA server response did not include a Content Attestation JWT.",
     );
   }
 
@@ -86,17 +86,28 @@ async function issueAttestation(attestation) {
 }
 
 const staticPages = {
+  home: {
+    headline: "JiJi Style",
+    description: "A personal journal about clothing, style and living well.",
+    type: "WebPage",
+    outputPath: "index.html",
+    urlPath: "/",
+    casFileName: "home_cas.json",
+  },
   about: {
-    headline: 'About JiJi',
-    description: 'JiJi Styleについて',
-    type: 'WebPage',
+    headline: "About JiJi",
+    description: "JiJi Styleについて",
+    type: "WebPage",
+    outputPath: path.join("about", "index.html"),
+    urlPath: "/about/",
+    casFileName: "about_cas.json",
   },
 };
 
-const slug = requireEnvironment('CA_PAGE_SLUG', pageSlug);
-const serverUrl = requireEnvironment('CA_SERVER_URL', caServerUrl);
-const issuer = requireEnvironment('CA_ISSUER', caIssuer);
-const auth = requireEnvironment('CA_SERVER_AUTH', caServerAuth);
+const slug = requireEnvironment("CA_PAGE_SLUG", pageSlug);
+const serverUrl = requireEnvironment("CA_SERVER_URL", caServerUrl);
+const issuer = requireEnvironment("CA_ISSUER", caIssuer);
+const auth = requireEnvironment("CA_SERVER_AUTH", caServerAuth);
 
 const page = staticPages[slug];
 
@@ -104,8 +115,8 @@ if (!page) {
   throw new Error(`Unsupported static page slug: ${slug}`);
 }
 
-const pagePath = path.join(repositoryRoot, 'dist', slug, 'index.html');
-const pageHtml = await readFile(pagePath, 'utf8');
+const pagePath = path.join(repositoryRoot, "dist", page.outputPath);
+const pageHtml = await readFile(pagePath, "utf8");
 
 const targetMatch = pageHtml.match(
   /<!-- ca-target:start -->([\s\S]*?)<!-- ca-target:end -->/,
@@ -130,48 +141,47 @@ if (targetElements.length === 0) {
 
 const manifestPath = path.join(
   repositoryRoot,
-  'src',
-  'data',
-  'content-attestations.json',
+  "src",
+  "data",
+  "content-attestations.json",
 );
 
-const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
-const casUrl = `/astro-cas/${slug}_cas.json`;
-const casPath = path.join(repositoryRoot, 'public', casUrl);
+const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
+const casUrl = `/astro-cas/${page.casFileName}`;
+const casPath = path.join(repositoryRoot, "public", casUrl);
 
 let existingCaId = manifest[slug]?.caId;
 
 try {
-  const [existingJwt] = JSON.parse(await readFile(casPath, 'utf8'));
-  existingCaId ??=
-    decodeJwtPayload(existingJwt)?.credentialSubject?.id;
+  const [existingJwt] = JSON.parse(await readFile(casPath, "utf8"));
+  existingCaId ??= decodeJwtPayload(existingJwt)?.credentialSubject?.id;
 } catch {
   // First issuance for this static page.
 }
 
-const pageUrl = `https://style.yh-inc.jp/${slug}/`;
+const pageUrl = new URL(page.urlPath, "https://style.yh-inc.jp").toString();
 const caId = existingCaId || `urn:uuid:${randomUUID()}`;
 
 const attestation = {
-  '@context': [
-    'https://www.w3.org/ns/credentials/v2',
-    'https://originator-profile.org/ns/credentials/v1',
-    'https://originator-profile.org/ns/cip/v1',
-    { '@language': 'ja-JP' },
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    "https://originator-profile.org/ns/credentials/v1",
+    "https://originator-profile.org/ns/cip/v1",
+    { "@language": "ja-JP" },
   ],
-  type: ['VerifiableCredential', 'ContentAttestation'],
+  type: ["VerifiableCredential", "ContentAttestation"],
   issuer,
   credentialSubject: {
     id: caId,
     type: page.type,
     headline: page.headline,
     description: page.description,
-    author: ['Yoshifumi Takeuchi'],
-    editor: ['Yoshifumi Takeuchi'],
+    author: ["Yoshifumi Takeuchi"],
+    editor: ["Yoshifumi Takeuchi"],
   },
   allowedUrl: [pageUrl],
   target: targetElements.map(({ content, cssSelector }) => ({
-    type: 'TextTargetIntegrity',
+    type: "TextTargetIntegrity",
     content,
     cssSelector,
   })),
@@ -189,10 +199,7 @@ manifest[slug] = {
   issuedAt: new Date().toISOString(),
 };
 
-await writeFile(
-  manifestPath,
-  `${JSON.stringify(manifest, null, 2)}\n`,
-);
+await writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
 
 console.log(`Issued static page CA for ${pageUrl}`);
 console.log(`External static page CAS: ${casUrl}`);

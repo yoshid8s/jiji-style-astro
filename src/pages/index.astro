@@ -9,8 +9,11 @@ import {
   getAllPosts,
   type WordPressPost,
 } from '../lib/wordpress';
+import ContentAttestation from '../components/ContentAttestation.astro';
+import { getArticleContentAttestations } from '../lib/content-attestations';
 
 const homePageId = 2163;
+const issuedCaUrls = getArticleContentAttestations('home');
 
 const sectionDefinitions = [
   { slug: 'daily-style', title: 'Daily Style', postCount: 3 },
@@ -183,23 +186,43 @@ try {
                 />
 
                 <div>
-                  <p class="mb-3 text-xs tracking-[0.2em] text-jiji-muted uppercase">
+                <!-- ca-target:start -->
+                <div>
+                  <p
+                    id="op-body-home-about-label"
+                    class="mb-3 text-xs tracking-[0.2em] text-jiji-muted uppercase"
+                  >
                     About JiJi
                   </p>
-                  <h2 class="font-serif text-4xl font-bold md:text-5xl">JiJi</h2>
-                  <p class="mt-6 max-w-[34rem] text-base leading-8 text-neutral-700">
+
+                  <h2
+                    id="op-body-home-about-title"
+                    class="font-serif text-4xl font-bold md:text-5xl"
+                  >
+                    JiJi
+                  </h2>
+
+                  <p
+                    id="op-body-home-about-description"
+                    class="mt-6 max-w-[34rem] text-base leading-8 text-neutral-700"
+                  >
                     Classic menswear enthusiast. I write about timeless style,
                     my wardrobe, and daily outfits.
                   </p>
-                  <a
-                    class="mt-7 inline-flex border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
-                    href="/about/"
-                  >
-                    About JiJi
-                  </a>
                 </div>
+                <!-- ca-target:end -->
+
+                <a
+                  class="mt-7 inline-flex border-b border-current pb-1 text-sm tracking-wide no-underline transition-opacity hover:opacity-50"
+                  href="/about/"
+                >
+                  About JiJi
+                </a>
+              </div>
               </div>
             </section>
+
+            <ContentAttestation casUrls={issuedCaUrls} />
 
             <section class="border-t border-jiji-border py-14 md:py-20">
               <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
