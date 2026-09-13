@@ -1070,5 +1070,13 @@
     "issuedAt": "2026-09-12T00:03:14.179Z",
     "adsCasUrl": "/astro-cas/3640_ads_cas.json",
     "adsIssuedAt": "2026-09-12T00:03:14.179Z"
+  },
+  "japans-unique-amekaji-style": {
+    "postId": 3656,
+    "casUrl": "/astro-cas/3656_cas.json",
+    "caId": "urn:uuid:1dbf766a-2e57-4042-94e4-52b40020c093",
+    "issuedAt": "2026-09-13T02:21:13.325Z",
+    "adsCasUrl": "/astro-cas/3656_ads_cas.json",
+    "adsIssuedAt": "2026-09-13T02:21:13.325Z"
   }
 }
